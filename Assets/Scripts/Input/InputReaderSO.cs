@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "InputReaderSO", menuName = "Input/InputReader")]
+[CreateAssetMenu(fileName = "InputReaderSO", menuName = "Input/InputReaderSO")]
 
 public class InputReaderSO : ScriptableObject, GameInput.IGameplayActions, GameInput.IMenusActions
 {
@@ -28,14 +28,12 @@ public class InputReaderSO : ScriptableObject, GameInput.IGameplayActions, GameI
     {
         _gameInput.Gameplay.Enable();
         _gameInput.Menus.Disable();
-        isGameplayInputEnabled = true;
     }
 
     public void EnableMenuInput()
     {
         _gameInput.Gameplay.Disable();
         _gameInput.Menus.Enable();
-        isMenuInputEnabled = true;
     }
 
     // --- Event Listeners ---
