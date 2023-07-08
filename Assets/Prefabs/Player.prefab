@@ -130,7 +130,7 @@ Rigidbody2D:
   m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -148,9 +148,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxRunSpeed: 10
   _runSpeed: 1
-  _maxJumpForce: 10
+  _maxJumpForce: 5
   _jumpForce: 6
-  _jumpForceAccrualRate: 6
-  _ascendingGravityScale: 5
-  _descendingGravityScale: 40
+  _jumpForceAccrualRate: 10
+  _ascendingGravityScale: 7
+  _descendingGravityScale: 15
+  _maxDescendingVelocity: 10
+  _boxCastDistance: 2
   _inputReader: {fileID: 11400000, guid: e6c675332ccc22a4188f9a3cb66da10c, type: 2}

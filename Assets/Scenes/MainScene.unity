@@ -295,34 +295,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1079244236679562852, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1079244236679562853, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
-      propertyPath: _jumpForce
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1079244236679562853, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
-      propertyPath: _maxJumpForce
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1079244236679562853, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
-      propertyPath: _boxCastDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1079244236679562853, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
-      propertyPath: _jumpForceAccrualRate
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1079244236679562853, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
-      propertyPath: _ascendingGravityScale
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1079244236679562853, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
-      propertyPath: _descendingGravityScale
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 1079244236679562873, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
       propertyPath: m_RootOrder
       value: 1
