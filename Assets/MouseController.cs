@@ -2,18 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
 public class MouseController : MonoBehaviour
 {
     private Transform _targetPosition;
     private bool _canClimb = true;
+    private bool _isClimbing = false;
     private Animator _animator;
     private Rigidbody2D _rb;
 
+	[Tooltip("This is all layers that the mouse will define as the ground")]
+	[SerializeField] private LayerMask ground;
+
+	[Header("Different Colliders")]
+	[SerializeField] private Collider2D _walkingCollider;
+	[SerializeField] private Collider2D _ClimbingCollider;
+
+    [Header("Speeds")]
     [SerializeField] private float walkingSpeed = 1f;
     [SerializeField] private float climbingSpeed = 1f;
-    [Tooltip("This is all layers that the mouse will define as the ground")]
-    [SerializeField] private LayerMask ground;
 
 
     void Start()
@@ -25,16 +33,24 @@ public class MouseController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 direction = (_targetPosition.position - transform.position).normalized;
+        Vector3 direction = (_targetPosition.position - transform.position);//.normalized;
+        //Debug.Log(direction);
         determineClimability();
-        walk(direction);
+        if ((_canClimb && direction.x < direction.y) || _isClimbing)
+        { //if the vertical distance is greater than the horizontal distance try and climb
+            climb();
+        }
+        else
+        { //otherwise walk
+            if(_isClimbing) { stopClimbing(); }
+            walk(direction);
+        }
     }
     
     private void walk(Vector3 dir)
     {
         //Debug.Log("Walk");
         //Debug.Log(dir);
-		_animator.SetTrigger("walk");
 		if (Math.Abs(dir.x) < 0.05f) { return; }
         if(dir.x < 0f)
         {
@@ -52,17 +68,38 @@ public class MouseController : MonoBehaviour
 
     private void climb()
     {
-        if( !_canClimb ) { return; }
-        _animator.SetTrigger("climb");
-
-        //Debug.Log("climb");
-
+        if( !_canClimb ) { stopClimbing();  return; }
+        startClimbing();
+        if(_rb.position.y >= _targetPosition.position.y)
+        {
+            stopClimbing() ; return;
+        }
+        _rb.MovePosition( _rb.position + new Vector2(0, 1) * climbingSpeed * Time.deltaTime);
     }
+
+    private void startClimbing()
+    {
+        if(_isClimbing ) { return; }
+        _animator.SetTrigger("climb");
+        _isClimbing = true;
+        _rb.gravityScale = 0f;
+        _ClimbingCollider.enabled = true;
+        _walkingCollider.enabled = false;
+    }
+    private void stopClimbing()
+    {
+        if(!_isClimbing ) { return; }
+        _animator.SetTrigger("walk");
+        _isClimbing = false;
+        _rb.gravityScale = 10f;
+		_ClimbingCollider.enabled = false;
+		_walkingCollider.enabled = true;
+	}
 
     private void determineClimability()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 15f, ground);
-        //Debug.DrawRay(transform.position, transform.up * 15f, Color.cyan, 1.5f);
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, GetComponent<SpriteRenderer>().bounds.min.y)/*transform.position*/, transform.up, 15f, ground);
+        Debug.DrawRay(new Vector2(transform.position.x, GetComponent<SpriteRenderer>().bounds.min.y), transform.up * 15f, Color.cyan, 0.01f);
         if ( hit.collider == null ) { _canClimb=false; return; }
         else { _canClimb = true; return;}
     }
