@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpForceAccrualRate = 10f;
 
     [Tooltip("Higher value = slower vertical ascent")]
-    [SerializeField] private float _ascendingGravityScale = 5f;
+    [SerializeField] private float _ascendingGravityScale = 7f;
 
     [Tooltip("Higher value = faster vertical descent")]
     [SerializeField] private float _descendingGravityScale = 15f;

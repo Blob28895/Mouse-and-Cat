@@ -316,6 +316,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1079244236679562853, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
+      propertyPath: _ascendingGravityScale
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1079244236679562853, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
       propertyPath: _descendingGravityScale
       value: 15
       objectReference: {fileID: 0}
