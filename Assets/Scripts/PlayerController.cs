@@ -10,19 +10,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _runSpeed = 1f;
 
     [Tooltip("Max jump force that can be applied from holding down the jump button")]
-    [SerializeField] private float _maxJumpForce = 10f;
+    [SerializeField] private float _maxJumpForce = 5f;
 
     [Tooltip("Multiplier applied to all jumps")]
-    [SerializeField] private float _jumpForce = 1f;
+    [SerializeField] private float _jumpForce = 6f;
 
     [Tooltip("Higher value = you need to hold the button down for less time to reach max jump force")]
-    [SerializeField] private float _jumpForceAccrualRate = 1f;
+    [SerializeField] private float _jumpForceAccrualRate = 10f;
 
     [Tooltip("Higher value = slower vertical ascent")]
-    [SerializeField] private float _ascendingGravityScale = 10f;
+    [SerializeField] private float _ascendingGravityScale = 5f;
 
     [Tooltip("Higher value = faster vertical descent")]
-    [SerializeField] private float _descendingGravityScale = 40f;
+    [SerializeField] private float _descendingGravityScale = 15f;
+    [SerializeField] private float _maxDescendingVelocity = 10f;
 
     [Header("Collider Settings")]
     [Tooltip("Higher value = larger jump buffer")]
@@ -84,6 +85,7 @@ public class PlayerController : MonoBehaviour
         else if(_rb.velocity.y < 0 && _isJumping)
         {
             Debug.Log("descending");
+            if(_rb.velocity.y < -_maxDescendingVelocity) { _rb.velocity = new Vector2(_rb.velocity.x, -_maxDescendingVelocity); }
             _rb.gravityScale = _descendingGravityScale;
         }
         else
@@ -114,6 +116,7 @@ public class PlayerController : MonoBehaviour
         {  
             if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground")) // for some reason this wont work with the layermask??
             {
+                Debug.Log("hit ground");
                 _isJumping = false;
             }
         }
