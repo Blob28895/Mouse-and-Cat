@@ -33,14 +33,13 @@ public class Scoring : MonoBehaviour
     {
         if(_scoringTime <= Time.time)
         {
-            Debug.Log("Updating Score");
+            //Debug.Log("Updating Score");
             _score += scorePerTime;
             _score += scorePerMouseAmount * (getNumberOfMice() / mouseMultiplyCount);
-            Debug.Log(_score);
-            //scoreText.text = "";
-            //scoreText.text = "Score: " + _score.ToString();
-            scoreText.text = _score.ToString();
-            //updateText("Score: " + _score.ToString());
+            //Debug.Log(_score);
+            scoreText.text = " ";
+            scoreText.text = "Score: " + _score.ToString();
+
             _scoringTime = secondsPerScore + Time.time;
         }
     }

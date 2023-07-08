@@ -36,14 +36,16 @@ public class MouseController : MonoBehaviour
         Vector3 direction = (_targetPosition.position - transform.position);//.normalized;
         //Debug.Log(direction);
         determineClimability();
-        if ((_canClimb && direction.x < direction.y) || _isClimbing)
+        if ((_canClimb && Math.Abs(direction.x) < Math.Abs(direction.y)) || _isClimbing)
         { //if the vertical distance is greater than the horizontal distance try and climb
+            //Debug.Log("Climb Call");
             climb();
         }
         else
         { //otherwise walk
-            if(_isClimbing) { stopClimbing(); }
+            if(_isClimbing) { /*Debug.Log("Im stopping climbing to start walking");*/ stopClimbing(); }
             walk(direction);
+            //Debug.Log("walk call");
         }
     }
     
@@ -68,9 +70,9 @@ public class MouseController : MonoBehaviour
 
     private void climb()
     {
-        if( !_canClimb ) { stopClimbing();  return; }
-        startClimbing();
-        if(_rb.position.y >= _targetPosition.position.y)
+        if( !_canClimb ) { /*Debug.Log("I cant Climb anymore so I will stop")*/; stopClimbing();  return; }
+        if (!_isClimbing) { startClimbing(); }
+        if(_rb.position.y > _targetPosition.position.y)
         {
             stopClimbing() ; return;
         }
@@ -79,6 +81,7 @@ public class MouseController : MonoBehaviour
 
     private void startClimbing()
     {
+        //Debug.Log("Starting Climbing");
         if(_isClimbing ) { return; }
         _animator.SetTrigger("climb");
         _isClimbing = true;
@@ -88,7 +91,8 @@ public class MouseController : MonoBehaviour
     }
     private void stopClimbing()
     {
-        if(!_isClimbing ) { return; }
+		//Debug.Log("Stopping Climbing");
+		if (!_isClimbing ) { return; }
         _animator.SetTrigger("walk");
         _isClimbing = false;
         _rb.gravityScale = 10f;
