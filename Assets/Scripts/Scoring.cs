@@ -7,6 +7,7 @@ using TMPro;
 public class Scoring : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
+    
 
     [Tooltip("Score that will be awarded to the player every second that they stay alive")]
     [SerializeField] private int scorePerTime = 5;
@@ -33,7 +34,7 @@ public class Scoring : MonoBehaviour
     {
         if(_scoringTime <= Time.time)
         {
-            //Debug.Log("Updating Score");
+            Debug.Log("Updating Score");
             _score += scorePerTime;
             _score += scorePerMouseAmount * (getNumberOfMice() / mouseMultiplyCount);
             //Debug.Log(_score);
