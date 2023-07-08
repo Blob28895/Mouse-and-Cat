@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class InputReaderSO : ScriptableObject, GameInput.IGameplayActions, GameInput.IMenusActions
 {
     public event UnityAction<Vector2> RunEvent = delegate { };
-    public event UnityAction JumpEvent = delegate { };
+    public event UnityAction<InputAction.CallbackContext> JumpEvent = delegate { };
     public event UnityAction PauseEvent = delegate { };
     public event UnityAction UnpauseEvent = delegate { };
 
@@ -37,8 +37,8 @@ public class InputReaderSO : ScriptableObject, GameInput.IGameplayActions, GameI
     }
 
     // --- Event Listeners ---
-    public void OnRun(InputAction.CallbackContext context) { RunEvent.Invoke(context.ReadValue<Vector2>());}
-    public void OnJump(InputAction.CallbackContext context) { JumpEvent.Invoke();}
+    public void OnRun(InputAction.CallbackContext context) { RunEvent.Invoke(context.ReadValue<Vector2>()); }
+    public void OnJump(InputAction.CallbackContext context) { JumpEvent.Invoke(context); }
     public void OnPause(InputAction.CallbackContext context) { PauseEvent.Invoke();}
     public void OnUnpause(InputAction.CallbackContext context) { UnpauseEvent.Invoke();}
 }

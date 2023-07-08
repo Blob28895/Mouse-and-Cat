@@ -42,8 +42,8 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""id"": ""b23f3d57-64f6-4984-b810-67982481e78a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Pause"",
