@@ -32,8 +32,8 @@ public class PlayerController : MonoBehaviour
 
     // jumping related variables
     private bool _isJumping;
-    private bool _isTouchingGround;
     private float _timeWhenJumpStart;
+    private bool _rejectJumpStartedMidair = false;
 
     private void Start()
     {
@@ -70,12 +70,10 @@ public class PlayerController : MonoBehaviour
         // adjust gravity scale based on ascending or descending
         if(_rb.velocity.y < 0)
         {
-            Debug.Log("Ascending");
             _rb.gravityScale = _ascendingGravityScale;
         }
         else if(_rb.velocity.y < 0)
         {
-            Debug.Log("Descending");
             _rb.gravityScale = _descendingGravityScale;
         }
     }
@@ -84,9 +82,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("Touching Ground");
             _isJumping = false;
-            _isTouchingGround = true;
         }
     }
 
@@ -98,27 +94,32 @@ public class PlayerController : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext context)
     {
-        if (!_isJumping && _isTouchingGround)
+        if(_isJumping) {
+            // don't let player start charging jump force while in midair
+            _rejectJumpStartedMidair = true;
+            return; 
+        }
+
+        // if jump button is pressed
+        if(context.phase == InputActionPhase.Started)
         {
-            if(context.phase == InputActionPhase.Started)
-            {
-                _timeWhenJumpStart = Time.fixedTime;
-            }
+            _rejectJumpStartedMidair = false;
+            _timeWhenJumpStart = Time.fixedTime;
+        }
 
-            // if jump button is released
-            if(context.phase == InputActionPhase.Canceled)
-            {
-                float accruedJumpForce = (Time.fixedTime - _timeWhenJumpStart) * _jumpForceAccrualRate;
-                Debug.Log("Accrued Jump Force: " + accruedJumpForce);
+        // if jump button is released
+        if(context.phase == InputActionPhase.Canceled)
+        {
+            if(_rejectJumpStartedMidair) { return; }
 
-                if(accruedJumpForce > _maxJumpForce)
-                {
-                    accruedJumpForce = _maxJumpForce;
-                }
+            // jump force is based on how long the jump button was held down
+            float accruedJumpForce = (Time.fixedTime - _timeWhenJumpStart) * _jumpForceAccrualRate;
+            Debug.Log("Accrued Jump Force: " + accruedJumpForce);
 
-                _isJumping = true;
-                _rb.AddForce(Vector2.up * _jumpForce * accruedJumpForce, ForceMode2D.Impulse);
-            }
+            if(accruedJumpForce > _maxJumpForce) { accruedJumpForce = _maxJumpForce; }
+
+            _isJumping = true;
+            _rb.AddForce(Vector2.up * _jumpForce * accruedJumpForce, ForceMode2D.Impulse);
         }
     }
 }
