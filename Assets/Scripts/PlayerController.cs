@@ -87,14 +87,27 @@ public class PlayerController : MonoBehaviour
 
     private void CheckForGroundCollision()
     {
-        float boxWidth = playerCollider.bounds.size.x;
-        Vector2 boxSize = new Vector2(boxWidth, _boxCastDistance);
+        // must be falling towards ground for _isJumping to be false
+        if(_rb.velocity.y > 0) { return; }
 
-        RaycastHit2D hit = Physics2D.BoxCast(playerCollider.bounds.center, boxSize, 0f, Vector2.down, _boxCastDistance);
-        
-        if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
-            _isJumping = false;
+        // positions box cast at bottom center of player collider
+        Vector3 colliderCenter = playerCollider.bounds.center;
+        Vector2 colliderCenter2D = new Vector2(colliderCenter.x, colliderCenter.y);
+
+        Vector3 playerColliderSize = playerCollider.bounds.size;
+        Vector2 playerColliderSize2D = new Vector2(playerColliderSize.x, playerColliderSize.y + .01f);
+
+        Vector2 origin = colliderCenter2D - (playerColliderSize2D);
+
+        // casts box directly under center of player collider
+        RaycastHit2D hit = Physics2D.BoxCast(origin, new Vector2(playerCollider.bounds.size.x, .01f), 0f, Vector2.down, _boxCastDistance);
+
+        if (hit.collider != null)
+        {  
+            if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground")) // for some reason this wont work with the layermask??
+            {
+                _isJumping = false;
+            }
         }
     }
 
