@@ -870,6 +870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothTime: 0.15
+  _background: {fileID: 894317155}
 --- !u!1 &688796287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,11 +1097,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1079244236679562873, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.78
+      value: 1.68
       objectReference: {fileID: 0}
     - target: {fileID: 1079244236679562873, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.422
+      value: -1.52
       objectReference: {fileID: 0}
     - target: {fileID: 1079244236679562873, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
       propertyPath: m_LocalPosition.z
