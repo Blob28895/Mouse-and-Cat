@@ -70,12 +70,10 @@ public class PlayerController : MonoBehaviour
         // adjust gravity scale based on ascending or descending
         if(_rb.velocity.y < 0)
         {
-            Debug.Log("Ascending");
             _rb.gravityScale = _ascendingGravityScale;
         }
         else if(_rb.velocity.y < 0)
         {
-            Debug.Log("Descending");
             _rb.gravityScale = _descendingGravityScale;
         }
     }
@@ -84,7 +82,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("Touching Ground");
             _isJumping = false;
         }
     }
@@ -97,7 +94,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext context)
     {
-        Debug.Log("isJumping " + _isJumping);
         if(_isJumping) {
             // don't let player start charging jump force while in midair
             _rejectJumpStartedMidair = true;
@@ -108,7 +104,6 @@ public class PlayerController : MonoBehaviour
         if(context.phase == InputActionPhase.Started)
         {
             _rejectJumpStartedMidair = false;
-            Debug.Log("started timing");
             _timeWhenJumpStart = Time.fixedTime;
         }
 
