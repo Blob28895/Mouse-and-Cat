@@ -125,20 +125,13 @@ public class PlayerController : MonoBehaviour
         Vector2 colliderCenter2D = new Vector2(colliderCenter.x, colliderCenter.y);
 
         Vector3 playerColliderSize = _playerCollider.bounds.size;
-        Vector2 playerColliderSize2D = new Vector2(playerColliderSize.x, playerColliderSize.y + .01f);
+        Vector2 playerColliderSize2D = new Vector2(playerColliderSize.x, playerColliderSize.y);
 
-        Vector2 origin = colliderCenter2D - (playerColliderSize2D);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(colliderCenter2D, playerColliderSize2D, 0f, Vector2.down, _boxCastDistance, LayerMask.GetMask("Ground"));
 
-        // casts box directly under center of player collider
-        RaycastHit2D hit = Physics2D.BoxCast(origin, new Vector2(_playerCollider.bounds.size.x, .01f), 0f, Vector2.down, _boxCastDistance);
-
-        if (hit.collider != null)
-        {  
-            if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground")) // for some reason this wont work with the layermask??
-            {
-               // Debug.Log("hit ground");
-                _isJumping = false;
-            }
+        if(raycastHit.collider != null)
+        {
+            _isJumping = false;
         }
         else
         {
