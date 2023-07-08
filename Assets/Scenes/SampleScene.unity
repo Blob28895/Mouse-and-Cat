@@ -1238,7 +1238,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: f0c761ef6253ad74e9e4310aeaf35da1, type: 3}
     - target: {fileID: 1695080104, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1695080104, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
       propertyPath: m_SortingLayerID
@@ -3172,7 +3172,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &2050905346
 Animator:
   serializedVersion: 4

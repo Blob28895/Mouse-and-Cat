@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _maxRunSpeed = 5f;
     [SerializeField] private float _runSpeed = 1f;
 
+    [Tooltip("Minimum jump force that will be applied regardless of how long the spacebar is held")]
+    [SerializeField] private float _minJumpForce = 2.5f;
+
     [Tooltip("Max jump force that can be applied from holding down the jump button")]
     [SerializeField] private float _maxJumpForce = 5f;
 
@@ -175,7 +178,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Accrued Jump Force: " + accruedJumpForce);
 
             _isJumping = true;
-            _rb.AddForce(Vector2.up * _jumpForce * accruedJumpForce, ForceMode2D.Impulse);
+            _rb.AddForce(Vector2.up * _jumpForce * Math.Max(accruedJumpForce, _minJumpForce), ForceMode2D.Impulse) ;
         }
     }
 }
