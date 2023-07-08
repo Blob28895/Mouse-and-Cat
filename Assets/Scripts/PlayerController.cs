@@ -1,13 +1,22 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float _maxRunSpeed = 5f;
-    [SerializeField] private float _moveSpeed = 1f;
+    [SerializeField] private float _runSpeed = 1f;
+
+    [Tooltip("Max jump force that can be applied from holding down the jump button")]
+    [SerializeField] private float _maxJumpForce = 10f;
+
     [SerializeField] private float _jumpForce = 1f;
+
+    [Tooltip("How fast the jump force increases while holding the jump button")]
+    [SerializeField] private float _jumpForceAccrualRate = 1f;
+
     [SerializeField] private float _ascendingGravityScale = 10f;
     [SerializeField] private float _descendingGravityScale = 40f;
 
@@ -16,8 +25,11 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 _inputVector;
     private Rigidbody2D _rb;
+
+    // jumping related variables
     private bool _isJumping;
     private bool _isTouchingGround;
+    private float _timeWhenJumpStart;
 
     private void Start()
     {
@@ -39,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.AddForce(_inputVector * _moveSpeed, ForceMode2D.Impulse);
+        _rb.AddForce(_inputVector * _runSpeed, ForceMode2D.Impulse);
 
         // keeps player from running faster than max run speed
         if(_rb.velocity.x > _maxRunSpeed)
@@ -80,14 +92,29 @@ public class PlayerController : MonoBehaviour
         _inputVector = movementInput;
     }
 
-    private void OnJump()
+    private void OnJump(InputAction.CallbackContext context)
     {
         if (!_isJumping && _isTouchingGround)
         {
-            Debug.Log("Jump");
-            _isJumping = true;
-            _rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+            if(context.phase == InputActionPhase.Started)
+            {
+                _timeWhenJumpStart = Time.fixedTime;
+            }
+
+            // if jump button is released
+            if(context.phase == InputActionPhase.Canceled)
+            {
+                float accruedJumpForce = (Time.fixedTime - _timeWhenJumpStart) * _jumpForceAccrualRate;
+                Debug.Log("Accrued Jump Force: " + accruedJumpForce);
+
+                if(accruedJumpForce > _maxJumpForce)
+                {
+                    accruedJumpForce = _maxJumpForce;
+                }
+
+                _isJumping = true;
+                _rb.AddForce(Vector2.up * _jumpForce * accruedJumpForce, ForceMode2D.Impulse);
+            }
         }
-        
     }
 }
