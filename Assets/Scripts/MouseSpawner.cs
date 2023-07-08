@@ -17,7 +17,7 @@ public class MouseSpawner : MonoBehaviour
     {
         if(Time.time > _spawnTime)
         {
-            Debug.Log("making it in");
+            //Debug.Log("making it in");
             GameObject mouse = Instantiate(Mouse/*, spawnLocation*/);
             mouse.transform.position = spawnLocation.position;
             _spawnTime =  Time.time + spawningInterval; 
