@@ -12,12 +12,16 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Max jump force that can be applied from holding down the jump button")]
     [SerializeField] private float _maxJumpForce = 10f;
 
+    [Tooltip("Multiplier applied to all jumps")]
     [SerializeField] private float _jumpForce = 1f;
 
-    [Tooltip("How fast the jump force increases while holding the jump button")]
+    [Tooltip("Higher value = you need to hold the button down for less time to reach max jump force")]
     [SerializeField] private float _jumpForceAccrualRate = 1f;
 
+    [Tooltip("Higher value = slower vertical ascent")]
     [SerializeField] private float _ascendingGravityScale = 10f;
+
+    [Tooltip("Higher value = faster vertical descent")]
     [SerializeField] private float _descendingGravityScale = 40f;
 
     [Header("Asset References")]
