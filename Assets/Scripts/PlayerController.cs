@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     private Collider2D playerCollider;
 
     // jumping related variables
-    private bool _isJumping;
+    private bool _isJumping = false;
     private float _timeWhenJumpStart;
     private bool _rejectJumpStartedMidair = false;
 
@@ -76,13 +76,20 @@ public class PlayerController : MonoBehaviour
         }
 
         // adjust gravity scale based on ascending or descending
-        if(_rb.velocity.y < 0)
+        if(_rb.velocity.y > 0 && _isJumping)
         {
+            Debug.Log("ascending");
             _rb.gravityScale = _ascendingGravityScale;
         }
-        else if(_rb.velocity.y < 0)
+        else if(_rb.velocity.y < 0 && _isJumping)
         {
+            Debug.Log("descending");
             _rb.gravityScale = _descendingGravityScale;
+        }
+        else
+        {
+            Debug.Log("not jumping");
+            _rb.gravityScale = 1f;
         }
     }
 
@@ -140,9 +147,9 @@ public class PlayerController : MonoBehaviour
 
             // jump force is based on how long the jump button was held down
             float accruedJumpForce = (Time.fixedTime - _timeWhenJumpStart) * _jumpForceAccrualRate;
-            Debug.Log("Accrued Jump Force: " + accruedJumpForce);
 
             if(accruedJumpForce > _maxJumpForce) { accruedJumpForce = _maxJumpForce; }
+            Debug.Log("Accrued Jump Force: " + accruedJumpForce);
 
             _isJumping = true;
             _rb.AddForce(Vector2.up * _jumpForce * accruedJumpForce, ForceMode2D.Impulse);
