@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
 
         _rb.AddForce(_inputVector * _runSpeed, ForceMode2D.Impulse);
 
-        if(_isJumping) { CheckForGroundCollision(); }
+        CheckForGroundCollision();
 
         // keeps player from running faster than max run speed
         if(_rb.velocity.x > _maxRunSpeed)
@@ -139,6 +139,10 @@ public class PlayerController : MonoBehaviour
                // Debug.Log("hit ground");
                 _isJumping = false;
             }
+        }
+        else
+        {
+            _isJumping = true;
         }
     }
 
