@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Monobehavior References")]
     [SerializeField] private Animator _animator = default;
+    [SerializeField] private SpriteRenderer _spriteRenderer = default;
 
     [Header("Asset References")]
     [SerializeField] private InputReaderSO _inputReader = default;
@@ -141,6 +142,9 @@ public class PlayerController : MonoBehaviour
     // --- Event Listeners ---
     private void OnRun(Vector2 movementInput)
     {
+        if(movementInput.x > 0) { _spriteRenderer.flipX = false; }
+        else if(movementInput.x < 0) { _spriteRenderer.flipX = true; }
+
         _inputVector = movementInput;
     }
 

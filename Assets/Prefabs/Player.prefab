@@ -262,4 +262,5 @@ MonoBehaviour:
   _maxDescendingVelocity: 10
   _boxCastDistance: 2
   _animator: {fileID: 1695080103}
+  _spriteRenderer: {fileID: 1695080104}
   _inputReader: {fileID: 11400000, guid: e6c675332ccc22a4188f9a3cb66da10c, type: 2}
