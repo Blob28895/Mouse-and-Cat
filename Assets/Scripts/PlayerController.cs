@@ -29,12 +29,16 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Higher value = larger jump buffer")]
     [SerializeField] private float _boxCastDistance = 3f;
 
+    [Header("Monobehavior References")]
+    [SerializeField] private Animator _animator = default;
+
     [Header("Asset References")]
     [SerializeField] private InputReaderSO _inputReader = default;
 
     private Vector2 _inputVector;
+
     private Rigidbody2D _rb;
-    private Collider2D playerCollider;
+    private Collider2D _playerCollider;
 
     // jumping related variables
     private bool _isJumping = false;
@@ -43,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        playerCollider = GetComponent<Collider2D>();
+        _playerCollider = GetComponent<Collider2D>();
         _rb = GetComponent<Rigidbody2D>();
         _inputReader.EnableGameplayInput();
     }
@@ -62,6 +66,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        SetAnimatorParameters();
+
         _rb.AddForce(_inputVector * _runSpeed, ForceMode2D.Impulse);
 
         if(_isJumping) { CheckForGroundCollision(); }
@@ -95,22 +101,32 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void SetAnimatorParameters()
+    {
+        bool isRunning = _rb.velocity.x > .01f || _rb.velocity.x < -.01f;
+        _animator.SetBool("isRunning", isRunning);
+
+        _animator.SetBool("isJumping", _isJumping);
+
+        _animator.SetFloat("runSpeed", _rb.velocity.x / _maxRunSpeed);
+    }
+
     private void CheckForGroundCollision()
     {
         // must be falling towards ground for _isJumping to be false
         if(_rb.velocity.y > 0) { return; }
 
         // positions box cast at bottom center of player collider
-        Vector3 colliderCenter = playerCollider.bounds.center;
+        Vector3 colliderCenter = _playerCollider.bounds.center;
         Vector2 colliderCenter2D = new Vector2(colliderCenter.x, colliderCenter.y);
 
-        Vector3 playerColliderSize = playerCollider.bounds.size;
+        Vector3 playerColliderSize = _playerCollider.bounds.size;
         Vector2 playerColliderSize2D = new Vector2(playerColliderSize.x, playerColliderSize.y + .01f);
 
         Vector2 origin = colliderCenter2D - (playerColliderSize2D);
 
         // casts box directly under center of player collider
-        RaycastHit2D hit = Physics2D.BoxCast(origin, new Vector2(playerCollider.bounds.size.x, .01f), 0f, Vector2.down, _boxCastDistance);
+        RaycastHit2D hit = Physics2D.BoxCast(origin, new Vector2(_playerCollider.bounds.size.x, .01f), 0f, Vector2.down, _boxCastDistance);
 
         if (hit.collider != null)
         {  
