@@ -45,6 +45,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Mice
+    uniqueID: 2450029153
+    locked: 0
   - name: Player
     uniqueID: 3655651761
     locked: 0

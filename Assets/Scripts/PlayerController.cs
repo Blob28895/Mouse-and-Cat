@@ -86,18 +86,18 @@ public class PlayerController : MonoBehaviour
         // adjust gravity scale based on ascending or descending
         if(_rb.velocity.y > 0 && _isJumping)
         {
-            Debug.Log("ascending");
+           // Debug.Log("ascending");
             _rb.gravityScale = _ascendingGravityScale;
         }
         else if(_rb.velocity.y < 0 && _isJumping)
         {
-            Debug.Log("descending");
+           // Debug.Log("descending");
             if(_rb.velocity.y < -_maxDescendingVelocity) { _rb.velocity = new Vector2(_rb.velocity.x, -_maxDescendingVelocity); }
             _rb.gravityScale = _descendingGravityScale;
         }
         else
         {
-            Debug.Log("not jumping");
+            //Debug.Log("not jumping");
             _rb.gravityScale = 1f;
         }
     }
@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
         {  
             if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground")) // for some reason this wont work with the layermask??
             {
-                Debug.Log("hit ground");
+               // Debug.Log("hit ground");
                 _isJumping = false;
             }
         }
