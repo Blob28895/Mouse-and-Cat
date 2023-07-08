@@ -24,11 +24,15 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Higher value = faster vertical descent")]
     [SerializeField] private float _descendingGravityScale = 40f;
 
+    [Header("Collider Settings")]
+    [SerializeField] private float _boxCastDistance = 3f;
+
     [Header("Asset References")]
     [SerializeField] private InputReaderSO _inputReader = default;
 
     private Vector2 _inputVector;
     private Rigidbody2D _rb;
+    private Collider2D playerCollider;
 
     // jumping related variables
     private bool _isJumping;
@@ -37,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        playerCollider = GetComponent<Collider2D>();
         _rb = GetComponent<Rigidbody2D>();
         _inputReader.EnableGameplayInput();
     }
@@ -56,6 +61,8 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         _rb.AddForce(_inputVector * _runSpeed, ForceMode2D.Impulse);
+
+        if(_isJumping) { CheckForGroundCollision(); }
 
         // keeps player from running faster than max run speed
         if(_rb.velocity.x > _maxRunSpeed)
@@ -78,9 +85,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void CheckForGroundCollision()
     {
-        if (other.gameObject.CompareTag("Ground"))
+        float boxWidth = playerCollider.bounds.size.x;
+        Vector2 boxSize = new Vector2(boxWidth, _boxCastDistance);
+
+        RaycastHit2D hit = Physics2D.BoxCast(playerCollider.bounds.center, boxSize, 0f, Vector2.down, _boxCastDistance);
+        
+        if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             _isJumping = false;
         }
