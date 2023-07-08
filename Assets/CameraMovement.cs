@@ -6,18 +6,17 @@ public class CameraMovement : MonoBehaviour
 {
     private GameObject _player;
 
-    [SerializeField] private float smoothFactor;
-    // Start is called before the first frame update
+    private Vector3 _velocity = Vector3.zero;
+    [Tooltip("Time for the camera to move from one position to the next, lower numbers results in the camera following the player more closely")]
+    [SerializeField] private float smoothTime = 5f;
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         Vector3 targetPosition = _player.transform.position + new Vector3(0, 0, -10);
-        //Vector3 smoothPosition = Vector3.Lerp(transform.position, targetPosition, smoothFactor * Time.fixedDeltaTime);
-        gameObject.transform.position = targetPosition;
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref _velocity, smoothTime);
     }
 }
