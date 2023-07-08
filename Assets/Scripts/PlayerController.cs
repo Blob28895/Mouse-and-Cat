@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _descendingGravityScale = 40f;
 
     [Header("Collider Settings")]
+    [Tooltip("Higher value = larger jump buffer")]
     [SerializeField] private float _boxCastDistance = 3f;
 
     [Header("Asset References")]
