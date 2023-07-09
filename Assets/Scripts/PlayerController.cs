@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     [Header("Asset References")]
     [SerializeField] private InputReaderSO _inputReader = default;
     [SerializeField] private Slider _slider;
+    [SerializeField] public HealthSO health;
 
     private Vector2 _inputVector;
 
@@ -101,9 +102,6 @@ public class PlayerController : MonoBehaviour
             _rb.velocity = new Vector2(-_maxRunSpeed, _rb.velocity.y);
         }
 
-
-        //Debug.Log(_rb.gravityScale);
-
         // adjust gravity scale based on ascending or descending
         if(_rb.velocity.y < 0 && !_isGrounded)
         {
@@ -153,7 +151,11 @@ public class PlayerController : MonoBehaviour
         else { _isGrounded = true;}
     }
 
-    // --- Event Listeners ---
+    public void TakeDamage()
+    {
+        Debug.Log("Player took damage");
+    }
+
     private void OnRun(Vector2 movementInput)
     {
         if(movementInput.x > 0) { _spriteRenderer.flipX = false; }

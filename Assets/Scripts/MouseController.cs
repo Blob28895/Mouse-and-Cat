@@ -12,6 +12,12 @@ public class MouseController : MonoBehaviour
     private Animator _animator;
     private Rigidbody2D _rb;
 
+    [Header("Damage Settings")]
+    [SerializeField] private float _damageFrequency = 1f;
+    [SerializeField] private int _damage = 1;
+
+    [Header("Layer Settings")]
+
 	[Tooltip("This is all layers that the mouse will define as the ground")]
 	[SerializeField] private LayerMask ground;
 
@@ -108,8 +114,18 @@ public class MouseController : MonoBehaviour
         else { _canClimb = true; return;}
     }
 
-	private void OnTriggerStay2D(Collider2D collision)
-	{
-		Debug.Log(collision.gameObject.name);
-	}
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            StartCoroutine(AttackPlayer(other, _damage));
+        }
+    }
+
+    private IEnumerator AttackPlayer(Collider2D playerCollider, int damage)
+    {
+        playerCollider.GetComponent<PlayerController>().health.Damage(_damage);
+        yield return new WaitForSeconds(_damageFrequency);
+        // TODO: Put some kind of effect here
+    }
 }

@@ -1450,6 +1450,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1079244236679562853, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
+      propertyPath: _slider
+      value: 
+      objectReference: {fileID: 1988104912}
     - target: {fileID: 1079244236679562873, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -3755,6 +3759,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 286970685615128852, guid: 810b2ca34d9fd7c4d889c150c6835ef5, type: 3}
   m_PrefabInstance: {fileID: 1988104910}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1988104912 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 286970685615128859, guid: 810b2ca34d9fd7c4d889c150c6835ef5, type: 3}
+  m_PrefabInstance: {fileID: 1988104910}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2059456427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3945,9 +3960,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mouse
       objectReference: {fileID: 0}
-    - target: {fileID: 5544964736351420539, guid: 5bb87e73085155f4a9272d988b45bb0d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 5544964736351420540, guid: 5bb87e73085155f4a9272d988b45bb0d, type: 3}
+      propertyPath: _damageFrequency
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5544964736351420542, guid: 5bb87e73085155f4a9272d988b45bb0d, type: 3}
       propertyPath: m_RootOrder
