@@ -39,7 +39,7 @@ public class Scoring : MonoBehaviour
         updateMultiplier();
         if(_scoringTime <= Time.time)
         {
-            Debug.Log("Updating Score");
+            //Debug.Log("Updating Score");
             _score += scorePerTime;
             _score += scorePerMouseAmount * currentMultiplier;
             //Debug.Log(_score);
@@ -61,7 +61,7 @@ public class Scoring : MonoBehaviour
     {//10 - 2,  15
         if(getNumberOfMice() - currentMultiplier * mouseMultiplyCount >= mouseMultiplyCount)
         {
-            Debug.Log("Increment multiplier");
+            //Debug.Log("Increment multiplier");
             currentMultiplier += 1;
             GameObject plusPoints = Instantiate(plusScoreObject, spawnLocation);
             plusPoints.GetComponent<RectTransform>().localPosition = spawnLocation.localPosition;

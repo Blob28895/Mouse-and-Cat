@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -41,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Asset References")]
     [SerializeField] private InputReaderSO _inputReader = default;
+    [SerializeField] private Slider _slider;
 
     private Vector2 _inputVector;
 
@@ -53,12 +56,14 @@ public class PlayerController : MonoBehaviour
     private bool _isJumping = false;
     private float _timeWhenJumpStart;
     private bool _rejectJumpStartedMidair = false;
+    private bool _isCharging = false;
 
     private void Start()
     {
         _playerCollider = GetComponent<Collider2D>();
         _rb = GetComponent<Rigidbody2D>();
         _inputReader.EnableGameplayInput();
+        resetJumpSlider();
     }
 
     private void OnEnable()
@@ -72,15 +77,20 @@ public class PlayerController : MonoBehaviour
         _inputReader.RunEvent -= OnRun;
         _inputReader.JumpEvent -= OnJump;
     }
-
-    private void FixedUpdate()
+	private void Update()
+	{
+		if ((Input.GetButtonDown("Jump") && !_isJumping)) { _isCharging = true; }
+		if (Input.GetButtonUp("Jump")) { resetJumpSlider(); }
+	}
+	private void FixedUpdate()
     {
         SetAnimatorParameters();
 
         _rb.AddForce(_inputVector * _runSpeed, ForceMode2D.Impulse);
 
         CheckForGroundCollision();
-
+        if((Input.GetButton("Jump") && _isCharging)) { setJumpSlider();   }
+        
         // keeps player from running faster than max run speed
         if(_rb.velocity.x > _maxRunSpeed)
         {
@@ -92,7 +102,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        Debug.Log(_rb.gravityScale);
+        //Debug.Log(_rb.gravityScale);
 
         // adjust gravity scale based on ascending or descending
         if(_rb.velocity.y < 0 && !_isGrounded)
@@ -157,7 +167,8 @@ public class PlayerController : MonoBehaviour
         if(_isJumping) {
             // don't let player start charging jump force while in midair
             _rejectJumpStartedMidair = true;
-            return; 
+			//resetJumpSlider();
+			return; 
         }
 
         // if jump button is pressed
@@ -170,7 +181,7 @@ public class PlayerController : MonoBehaviour
         // if jump button is released
         if(context.phase == InputActionPhase.Canceled)
         {
-            if(_rejectJumpStartedMidair) { return; }
+            if(_rejectJumpStartedMidair) { /*resetJumpSlider();*/ return; }
 
             // jump force is based on how long the jump button was held down
             float accruedJumpForce = (Time.fixedTime - _timeWhenJumpStart) * _jumpForceAccrualRate;
@@ -181,5 +192,16 @@ public class PlayerController : MonoBehaviour
             _isJumping = true;
             _rb.AddForce(Vector2.up * _jumpForce * Math.Max(accruedJumpForce, _minJumpForce), ForceMode2D.Impulse) ;
         }
+    }
+
+    private void setJumpSlider()
+    {
+		_slider.value += (_maxJumpForce / _jumpForceAccrualRate) / 10f ;
+    }
+
+    private void resetJumpSlider()
+    {
+        _slider.value = 0;
+        _isCharging = false;
     }
 }
