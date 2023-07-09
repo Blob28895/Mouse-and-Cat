@@ -14,4 +14,9 @@ public class MenuButtons : MonoBehaviour
 	{
 		Application.Quit();
 	}
+
+	public void loadPreviousScene()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+	}
 }

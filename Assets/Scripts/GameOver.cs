@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
@@ -44,5 +45,14 @@ public class GameOver : MonoBehaviour
         highScoreUI.text = "Highscore: " + scoreSO.highScore.ToString();
         scoreUI.text = "Score: " + scoreSO.score.ToString();
         _gameOver = true;
+    }
+
+    public void reloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public bool getGameOver()
+    {
+        return _gameOver;
     }
 }

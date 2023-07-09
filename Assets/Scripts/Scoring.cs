@@ -26,6 +26,7 @@ public class Scoring : MonoBehaviour
 
     [Header("Asset References")]
     [SerializeField] private ScoreSO scoreSO = default;
+    [SerializeField] private GameOver gameOver;
 
     private int _score = 0;
     private float _scoringTime = 0f;
@@ -36,7 +37,7 @@ public class Scoring : MonoBehaviour
     {
         updateMultiplier();
 
-        if(_scoringTime <= Time.time)
+        if(_scoringTime <= Time.time && !gameOver.getGameOver())
         {
             _score += scorePerTime;
             _score += scorePerMouseAmount * currentMultiplier;

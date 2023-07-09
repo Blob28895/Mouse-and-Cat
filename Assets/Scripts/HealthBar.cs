@@ -13,7 +13,11 @@ public class HealthBar : MonoBehaviour
     void Start()
     {
         _slider = GetComponent<Slider>();
+        _slider.value = 1;
+        _healthSO.resetHealth();
+        Debug.Log("Start Function called");
     }
+
 
     void Update()
     {

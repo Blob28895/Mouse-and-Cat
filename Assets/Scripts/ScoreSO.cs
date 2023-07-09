@@ -15,7 +15,7 @@ public class ScoreSO : ScriptableObject
         {
             _score = value;
 
-            if(_score >= highScore)
+            if(_score > highScore)
             {
                 highScore = _score;
             }

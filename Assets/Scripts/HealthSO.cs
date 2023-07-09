@@ -28,6 +28,11 @@ public class HealthSO : ScriptableObject
         _currentHealth = _startingHealth;
     }
 
+    public void resetHealth()
+    {
+		_currentHealth = _startingHealth;
+	}
+
     public void Damage(int damage)
     {
         _currentHealth -= damage;
