@@ -1446,49 +1446,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1695080104, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
-      propertyPath: m_Size.x
-      value: 1.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 1695080104, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
-      propertyPath: m_Size.y
-      value: 1.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 1695080104, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f0c761ef6253ad74e9e4310aeaf35da1, type: 3}
-    - target: {fileID: 1695080104, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
-      propertyPath: m_SortingLayer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1695080104, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -639315535
-      objectReference: {fileID: 0}
-    - target: {fileID: 1695080104, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1695080105, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1079244236679562850, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1079244236679562850, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1079244236679562852, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1079244236679562855, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 1079244236679562873, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
       propertyPath: m_RootOrder

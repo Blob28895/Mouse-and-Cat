@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Higher value = faster vertical descent")]
     [SerializeField] private float _descendingGravityScale = 15f;
     [SerializeField] private float _maxDescendingVelocity = 10f;
+    [SerializeField] private float _minAscendingVelocity = 3f;
 
     [Header("Collider Settings")]
     [Tooltip("Higher value = larger jump buffer")]
@@ -94,13 +95,13 @@ public class PlayerController : MonoBehaviour
         // adjust gravity scale based on ascending or descending
         if(_rb.velocity.y < 0 && !_isGrounded)
         {
-           Debug.Log("descending");
+           
             if(_rb.velocity.y < -_maxDescendingVelocity) { _rb.velocity = new Vector2(_rb.velocity.x, -_maxDescendingVelocity); }
             _rb.gravityScale = _descendingGravityScale;
         }
         else if(_rb.velocity.y > 0 && _isJumping)
         {
-            Debug.Log("ascending");
+            if(_rb.velocity.y < _minAscendingVelocity) { _rb.velocity = new Vector2(_rb.velocity.x, _minAscendingVelocity); }
             _rb.gravityScale = _ascendingGravityScale;
         }
         
