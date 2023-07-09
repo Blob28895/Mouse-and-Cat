@@ -801,6 +801,7 @@ MonoBehaviour:
   plusScoreObject: {fileID: 174353160781668712, guid: 204390f47ef1fd3448cd8477f1377073, type: 3}
   spawnLocation: {fileID: 1936245139}
   scoreSO: {fileID: 11400000, guid: 9e811ab8095b624428113daadfefd0c7, type: 2}
+  gameOver: {fileID: 1379956825}
 --- !u!1 &341741975
 GameObject:
   m_ObjectHideFlags: 0
