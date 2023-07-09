@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "GameOverChannel", menuName = "ScriptableObjects/GameOverChannel", order = 1)]
 public class GameOverChannelSO : ScriptableObject
 {
-    public delegate void GameOverDelegate();
-    public event GameOverDelegate OnGameOver;
+    public event UnityAction GameOverEvent = delegate { };
 
     public void RaiseEvent()
     {
-        if (OnGameOver != null)
+        if (GameOverEvent != null)
         {
-            OnGameOver();
+            GameOverEvent.Invoke();
         }
     }
 }

@@ -17,17 +17,14 @@ public class HealthSO : ScriptableObject
         _currentHealth = _startingHealth;
     }
 
-    void Update()
+    public void Damage(int damage)
     {
+        _currentHealth -= damage;
+
         if (_currentHealth <= 0)
         {
             _gameOverChannel.RaiseEvent();
         }
-    }
-
-    public void Damage(int damage)
-    {
-        _currentHealth -= damage;
         Debug.Log(_currentHealth);
     }
 }

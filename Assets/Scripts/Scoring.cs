@@ -25,31 +25,30 @@ public class Scoring : MonoBehaviour
     [SerializeField] private GameObject plusScoreObject;
     [SerializeField] private RectTransform spawnLocation;
 
+    [Header("Asset References")]
+    [SerializeField] private ScoreSO scoreSO = default;
+
     private int _score = 0;
     private float _scoringTime = 0f;
     private int currentMultiplier = 1;
 
-	private void Start()
-	{
-        //scoreText.text = "testing this bullshit";
-	}
 	// Update is called once per frame
 	void FixedUpdate()
     {
         updateMultiplier();
+
         if(_scoringTime <= Time.time)
         {
-            //Debug.Log("Updating Score");
             _score += scorePerTime;
             _score += scorePerMouseAmount * currentMultiplier;
-            //Debug.Log(_score);
+
+            scoreSO.score = _score;
+
             scoreText.text = " ";
             scoreText.text = "Score: " + _score.ToString();
 
             _scoringTime = secondsPerScore + Time.time;
         }
-
-        
     }
 
     private void updateText(string s)
