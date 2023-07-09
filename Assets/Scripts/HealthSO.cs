@@ -27,4 +27,7 @@ public class HealthSO : ScriptableObject
         }
         Debug.Log(_currentHealth);
     }
+
+    public int GetStartingHealth() { return _startingHealth; }
+    public int GetHealth() { return _currentHealth; }
 }
