@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rb;
     private Collider2D _playerCollider;
 
+    private bool _isGrounded = false;
+
     // jumping related variables
     private bool _isJumping = false;
     private float _timeWhenJumpStart;
@@ -86,21 +88,24 @@ public class PlayerController : MonoBehaviour
             _rb.velocity = new Vector2(-_maxRunSpeed, _rb.velocity.y);
         }
 
+
+        Debug.Log(_rb.gravityScale);
+
         // adjust gravity scale based on ascending or descending
-        if(_rb.velocity.y > 0 && _isJumping)
+        if(_rb.velocity.y < 0 && !_isGrounded)
         {
-           // Debug.Log("ascending");
-            _rb.gravityScale = _ascendingGravityScale;
-        }
-        else if(_rb.velocity.y < 0 && _isJumping)
-        {
-           // Debug.Log("descending");
+           Debug.Log("descending");
             if(_rb.velocity.y < -_maxDescendingVelocity) { _rb.velocity = new Vector2(_rb.velocity.x, -_maxDescendingVelocity); }
             _rb.gravityScale = _descendingGravityScale;
         }
+        else if(_rb.velocity.y > 0 && _isJumping)
+        {
+            Debug.Log("ascending");
+            _rb.gravityScale = _ascendingGravityScale;
+        }
+        
         else
         {
-            //Debug.Log("not jumping");
             _rb.gravityScale = 1f;
         }
     }
@@ -129,14 +134,13 @@ public class PlayerController : MonoBehaviour
 
         RaycastHit2D raycastHit = Physics2D.BoxCast(colliderCenter2D, playerColliderSize2D, 0f, Vector2.down, _boxCastDistance, LayerMask.GetMask("Ground"));
 
-        if(raycastHit.collider != null)
-        {
-            _isJumping = false;
-        }
-        else
-        {
-            _isJumping = true;
-        }
+        if(raycastHit.collider != null) { _isJumping = false; } 
+        else { _isJumping = true;}
+
+        raycastHit = Physics2D.BoxCast(colliderCenter2D, playerColliderSize2D, 0f, Vector2.down, 1f, LayerMask.GetMask("Ground"));
+
+        if(raycastHit.collider == null) { _isGrounded = false; } 
+        else { _isGrounded = true;}
     }
 
     // --- Event Listeners ---
