@@ -3847,9 +3847,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1000585213}
     m_Modifications:
+    - target: {fileID: 117204259, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9059215433208561468, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
       propertyPath: m_Name
       value: GameOver UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 9059215433208561468, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9059215433208561469, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
       propertyPath: m_Pivot.x
@@ -3933,6 +3941,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9059215433208561469, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9059215433915839677, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

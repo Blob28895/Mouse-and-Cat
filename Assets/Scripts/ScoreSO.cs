@@ -15,7 +15,7 @@ public class ScoreSO : ScriptableObject
         {
             _score = value;
 
-            if(_score > highScore)
+            if(_score >= highScore)
             {
                 highScore = _score;
             }
@@ -34,5 +34,6 @@ public class ScoreSO : ScriptableObject
     public void ResetScore()
     {
         _score = 0;
+        highScore = 0;
     }
 }

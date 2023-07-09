@@ -25,7 +25,7 @@ public class HealthSO : ScriptableObject
         {
             _gameOverChannel.RaiseEvent();
         }
-        Debug.Log(_currentHealth);
+        
     }
 
     public int GetStartingHealth() { return _startingHealth; }

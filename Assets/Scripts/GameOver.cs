@@ -10,6 +10,7 @@ public class GameOver : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel = default;
     [SerializeField] private TextMeshProUGUI highScoreUI = default;
     [SerializeField] private TextMeshProUGUI scoreUI = default;
+    [SerializeField] private TextMeshProUGUI newHighScoreUI = default;
 
 
     [Header("Asset References")]
@@ -26,6 +27,7 @@ public class GameOver : MonoBehaviour
     private void OnDisable()
     {
         gameOverChannel.GameOverEvent -= OnGameOver;
+        newHighScoreUI.gameObject.SetActive(false);
     }
 
     private void OnGameOver()
@@ -33,9 +35,14 @@ public class GameOver : MonoBehaviour
         if (_gameOver) { return; }
 
         gameOverPanel.SetActive(true);
+        Debug.Log("Game Over");
+        if(scoreSO.score >= scoreSO.highScore)
+        {
+            newHighScoreUI.gameObject.SetActive(true);
+        }
 
-        highScoreUI.text = scoreSO.highScore.ToString();
-        scoreUI.text = scoreSO.score.ToString();
+        highScoreUI.text = "Highscore: " + scoreSO.highScore.ToString();
+        scoreUI.text = "Score: " + scoreSO.score.ToString();
         _gameOver = true;
     }
 }

@@ -7,7 +7,6 @@ using TMPro;
 public class Scoring : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
-    
 
     [Tooltip("Score that will be awarded to the player every second that they stay alive")]
     [SerializeField] private int scorePerTime = 5;
