@@ -2,8 +2,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "InputReaderSO", menuName = "Input/InputReaderSO")]
 
+[CreateAssetMenu(fileName = "InputReader", menuName = "ScriptableObjects/InputReader", order = 1)]
 public class InputReaderSO : ScriptableObject, GameInput.IGameplayActions, GameInput.IMenusActions
 {
     public event UnityAction<Vector2> RunEvent = delegate { };
