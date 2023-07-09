@@ -15,6 +15,7 @@ public class MouseController : MonoBehaviour
     [Header("Damage Settings")]
     [SerializeField] private float _damageFrequency = 1f;
     [SerializeField] private int _damage = 1;
+    [SerializeField] private GameObject _damageEffect = default;
 
     [Header("Layer Settings")]
 
@@ -124,8 +125,11 @@ public class MouseController : MonoBehaviour
 
     private IEnumerator AttackPlayer(Collider2D playerCollider, int damage)
     {
+        _damageEffect.SetActive(true);
         playerCollider.GetComponent<PlayerController>().health.Damage(_damage);
+
         yield return new WaitForSeconds(_damageFrequency);
-        // TODO: Put some kind of effect here
+
+        _damageEffect.SetActive(false);
     }
 }

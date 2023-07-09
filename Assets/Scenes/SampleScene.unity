@@ -3782,9 +3782,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 339874153331750247, guid: 5bb87e73085155f4a9272d988b45bb0d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 341291648130283161, guid: 5bb87e73085155f4a9272d988b45bb0d, type: 3}
       propertyPath: m_TagString
       value: Mouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870534421681208395, guid: 5bb87e73085155f4a9272d988b45bb0d, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870534421681208395, guid: 5bb87e73085155f4a9272d988b45bb0d, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5544964736351420539, guid: 5bb87e73085155f4a9272d988b45bb0d, type: 3}
       propertyPath: m_Name
