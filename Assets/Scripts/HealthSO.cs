@@ -12,7 +12,7 @@ public class HealthSO : ScriptableObject
 
     private int _currentHealth;
 
-    void Start()
+    void OnEnable()
     {
         _currentHealth = _startingHealth;
     }
@@ -25,8 +25,9 @@ public class HealthSO : ScriptableObject
         }
     }
 
-    public void TakeDamage(int damage)
+    public void Damage(int damage)
     {
         _currentHealth -= damage;
+        Debug.Log(_currentHealth);
     }
 }

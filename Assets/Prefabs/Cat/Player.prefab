@@ -265,3 +265,5 @@ MonoBehaviour:
   _animator: {fileID: 1695080103}
   _spriteRenderer: {fileID: 1695080104}
   _inputReader: {fileID: 11400000, guid: e6c675332ccc22a4188f9a3cb66da10c, type: 2}
+  _slider: {fileID: 0}
+  health: {fileID: 11400000, guid: afe1c5690b3ef054a9c63e272467963b, type: 2}

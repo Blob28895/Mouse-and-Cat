@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Mouse
+  - DamageToPlayer
   layers:
   - Default
   - TransparentFX
