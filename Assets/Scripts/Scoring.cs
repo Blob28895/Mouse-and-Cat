@@ -21,9 +21,13 @@ public class Scoring : MonoBehaviour
     [Tooltip("Number of mice required to multiply by mouse multiplier again")]
     [SerializeField] private int mouseMultiplyCount = 2;
 
+    [Header("Plus Score")]
+    [SerializeField] private GameObject plusScoreObject;
+    [SerializeField] private RectTransform spawnLocation;
 
     private int _score = 0;
     private float _scoringTime = 0f;
+    private int currentMultiplier = 1;
 
 	private void Start()
 	{
@@ -32,23 +36,38 @@ public class Scoring : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate()
     {
+        updateMultiplier();
         if(_scoringTime <= Time.time)
         {
             Debug.Log("Updating Score");
             _score += scorePerTime;
-            _score += scorePerMouseAmount * (getNumberOfMice() / mouseMultiplyCount);
+            _score += scorePerMouseAmount * currentMultiplier;
             //Debug.Log(_score);
             scoreText.text = " ";
             scoreText.text = "Score: " + _score.ToString();
 
             _scoringTime = secondsPerScore + Time.time;
         }
+
+        
     }
 
     private void updateText(string s)
     {
 		scoreText.text = s;
 	}
+
+    private void updateMultiplier()
+    {//10 - 2,  15
+        if(getNumberOfMice() - currentMultiplier * mouseMultiplyCount >= mouseMultiplyCount)
+        {
+            Debug.Log("Increment multiplier");
+            currentMultiplier += 1;
+            GameObject plusPoints = Instantiate(plusScoreObject, spawnLocation);
+            plusPoints.GetComponent<RectTransform>().localPosition = spawnLocation.localPosition;
+            plusPoints.GetComponent<plusScore>().setText("+" + scorePerMouseAmount + "/sec");
+        }
+    }
     private int getNumberOfMice()
     {
         return GameObject.FindGameObjectsWithTag("Mouse").Length;
