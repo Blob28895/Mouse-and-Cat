@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement Settings")]
+    [Header("Run Settings")]
     [SerializeField] private float _maxRunSpeed = 5f;
     [SerializeField] private float _runSpeed = 1f;
+
+    [Header("Jump Settings")]
 
     [Tooltip("Minimum jump force that will be applied regardless of how long the spacebar is held")]
     [SerializeField] private float _minJumpForce = 2.5f;
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Higher value = you need to hold the button down for less time to reach max jump force")]
     [SerializeField] private float _jumpForceAccrualRate = 10f;
 
+    [Header("Ascent and Descent Settings")]
     [Tooltip("Higher value = slower vertical ascent")]
     [SerializeField] private float _ascendingGravityScale = 7f;
 
