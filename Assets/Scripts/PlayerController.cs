@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     [Header("Monobehavior References")]
     [SerializeField] private Animator _animator = default;
     [SerializeField] private SpriteRenderer _spriteRenderer = default;
+    [SerializeField] private AudioSource _meow;
 
     [Header("Asset References")]
     [SerializeField] private InputReaderSO _inputReader = default;
@@ -63,6 +64,7 @@ public class PlayerController : MonoBehaviour
     {
         _playerCollider = GetComponent<Collider2D>();
         _rb = GetComponent<Rigidbody2D>();
+        _meow = GetComponent<AudioSource>();
         _inputReader.EnableGameplayInput();
         resetJumpSlider();
     }
@@ -190,7 +192,7 @@ public class PlayerController : MonoBehaviour
 
             if(accruedJumpForce > _maxJumpForce) { accruedJumpForce = _maxJumpForce; }
             Debug.Log("Accrued Jump Force: " + accruedJumpForce);
-
+            _meow.Play();
             _isJumping = true;
             _rb.AddForce(Vector2.up * _jumpForce * Math.Max(accruedJumpForce, _minJumpForce), ForceMode2D.Impulse) ;
         }

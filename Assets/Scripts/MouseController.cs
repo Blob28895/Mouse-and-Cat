@@ -30,12 +30,16 @@ public class MouseController : MonoBehaviour
     [SerializeField] private float walkingSpeed = 1f;
     [SerializeField] private float climbingSpeed = 1f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource _squeak;
+
 
     void Start()
     {
         _targetPosition = GameObject.FindGameObjectWithTag("Player").transform;
         _animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
+        _squeak = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -129,6 +133,7 @@ public class MouseController : MonoBehaviour
 
         HealthSO playerHealth = playerCollider.GetComponent<PlayerController>().health;
         playerHealth.Damage(_damage);
+        _squeak.Play();
         
         yield return new WaitForSeconds(_damageFrequency);
 
