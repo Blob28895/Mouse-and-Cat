@@ -126,10 +126,13 @@ public class MouseController : MonoBehaviour
     private IEnumerator AttackPlayer(Collider2D playerCollider, int damage)
     {
         _damageEffect.SetActive(true);
-        playerCollider.GetComponent<PlayerController>().health.Damage(_damage);
 
+        HealthSO playerHealth = playerCollider.GetComponent<PlayerController>().health;
+        playerHealth.Damage(_damage);
+        
         yield return new WaitForSeconds(_damageFrequency);
 
         _damageEffect.SetActive(false);
+        StartCoroutine(playerHealth.AttemptToRegen());
     }
 }
