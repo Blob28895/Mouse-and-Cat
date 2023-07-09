@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5544964736351420540}
   - component: {fileID: 5544964736351420543}
   - component: {fileID: 5544964736351420541}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mouse
   m_TagString: Mouse
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5544964737861062703}
   - component: {fileID: 5544964737861062702}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Climbing Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
