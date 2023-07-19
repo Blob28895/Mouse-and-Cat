@@ -62,9 +62,6 @@ public class Scoring : MonoBehaviour
         {
             //Debug.Log("Increment multiplier");
             currentMultiplier += 1;
-            GameObject plusPoints = Instantiate(plusScoreObject, spawnLocation);
-            plusPoints.GetComponent<RectTransform>().localPosition = spawnLocation.localPosition;
-            plusPoints.GetComponent<plusScore>().setText("+" + scorePerMouseAmount + "/sec");
         }
     }
     private int getNumberOfMice()
