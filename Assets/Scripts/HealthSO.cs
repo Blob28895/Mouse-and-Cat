@@ -37,7 +37,7 @@ public class HealthSO : ScriptableObject
     {
         _currentHealth -= damage;
 
-        if (_currentHealth <= 0)
+        if (_currentHealth <= 0 && !_gameOverChannel.isGameOver)
         {
             _gameOverChannel.RaiseEvent();
         }
