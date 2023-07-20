@@ -7,6 +7,7 @@ using Unity.Services.Leaderboards.Models;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Leaderboards;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 // TODO:
@@ -24,8 +25,6 @@ public class LeaderboardController : MonoBehaviour
 {
     [SerializeField] private ScoreSO _scoreSO;
     [SerializeField] private GameOverChannelSO _gameOverChannelSO;
-
-    private string _currLeaderboardId = "Living_Room_Highscores";
 
     private async void Awake()
     {
@@ -54,45 +53,26 @@ public class LeaderboardController : MonoBehaviour
     private void OnDisable() { _gameOverChannelSO.GameOverEvent -= IsLeaderboardScore; }
 
     // Adds new highscores to leaderboard, replaces existing score
-    public async void IsLeaderboardScore()
+    public void IsLeaderboardScore()
     {
         // store current score just in case it gets changed
         int potentialLeaderboardScore = _scoreSO.score;
 
-        if (potentialLeaderboardScore < _scoreSO.highScore)
-            return;
-
-        // prevents same score being reported twice
-        _scoreSO.scoreReported = true;
-
-        // if player already has a high score entry, replace it
-        int? currPlayerScore = await GetCurrentPlayerScore();
-        if(currPlayerScore != null && currPlayerScore < potentialLeaderboardScore)
-        {
-            AddScoreEntry(potentialLeaderboardScore - (int)currPlayerScore);
-        }
-        else
-        {
-            AddScoreEntry(potentialLeaderboardScore);
-        }
+        if (potentialLeaderboardScore >= _scoreSO.highScore)
+            AddScoreEntry(potentialLeaderboardScore, GetLeaderboardId());
     }
 
-    private async void AddScoreEntry(int score)
+    private async void AddScoreEntry(int score, String leaderboardId)
     {
-        Debug.Log("Adding score: " + score + " to leaderboard: " + _currLeaderboardId);
-        var scoreResponse = await LeaderboardsService.Instance.AddPlayerScoreAsync(_currLeaderboardId, score);
+        Debug.Log("Adding score: " + score + " to leaderboard: " + leaderboardId);
+        var scoreResponse = await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardId, score);
     }
 
-    private async Task<int?> GetCurrentPlayerScore()
+    // gets id from scene name (scene name with underscores instead of spaces)
+    private String GetLeaderboardId()
     {
-        try
-        {
-            var entry = await LeaderboardsService.Instance.GetPlayerScoreAsync(_currLeaderboardId);
-            return (int) entry.Score;
-        }
-        catch(Exception)
-        {
-            return null;
-        }
+        String sceneName = SceneManager.GetActiveScene().name;
+        Debug.Log(sceneName.Replace(" ", "_"));
+        return sceneName.Replace(" ", "_");
     }
 }

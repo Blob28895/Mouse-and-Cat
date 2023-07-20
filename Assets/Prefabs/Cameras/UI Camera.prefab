@@ -229,10 +229,8 @@ MonoBehaviour:
   secondsPerScore: 1
   scorePerMouseAmount: 5
   mouseMultiplyCount: 2
-  plusScoreObject: {fileID: 174353160781668712, guid: 204390f47ef1fd3448cd8477f1377073, type: 3}
-  spawnLocation: {fileID: 0}
   scoreSO: {fileID: 11400000, guid: 9e811ab8095b624428113daadfefd0c7, type: 2}
-  gameOver: {fileID: 0}
+  _gameOver: {fileID: 11400000, guid: c3614220474c2114190d55612b911f13, type: 2}
 --- !u!1 &3940349493571568779
 GameObject:
   m_ObjectHideFlags: 0

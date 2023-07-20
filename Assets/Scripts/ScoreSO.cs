@@ -7,8 +7,6 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "Score", menuName = "ScriptableObjects/Score", order = 1)]
 public class ScoreSO : ScriptableObject
 {
-    public bool scoreReported = false;
-
     public int score
     {
         get
@@ -33,12 +31,10 @@ public class ScoreSO : ScriptableObject
     private void OnEnable()
     {
         _score = 0;
-        scoreReported = false;
     }
 
     private void OnDisable()
     {
         _score = 0;
-        scoreReported = false;
     }
 }

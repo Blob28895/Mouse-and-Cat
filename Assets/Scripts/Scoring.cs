@@ -20,27 +20,35 @@ public class Scoring : MonoBehaviour
     [Tooltip("Number of mice required to multiply by mouse multiplier again")]
     [SerializeField] private int mouseMultiplyCount = 2;
 
-    [Header("Plus Score")]
-    [SerializeField] private GameObject plusScoreObject;
-    [SerializeField] private RectTransform spawnLocation;
 
     [Header("Asset References")]
     [SerializeField] private ScoreSO scoreSO = default;
-    [SerializeField] private GameOver gameOver;
+    [SerializeField] private GameOverChannelSO _gameOver = default;
 
     private int _score = 0;
     private float _scoringTime = 0f;
-    private int currentMultiplier = 1;
+    private int _currentMultiplier = 1;
+    private bool _ableToScore = true;
+
+    private void OnEnable()
+    {
+        _gameOver.GameOverEvent += turnOffScoring;
+    }
+
+    private void OnDisable()
+    {
+        _gameOver.GameOverEvent -= turnOffScoring;
+    }
 
 	// Update is called once per frame
 	void FixedUpdate()
     {
         updateMultiplier();
 
-        if(_scoringTime <= Time.time && !gameOver.getGameOver())
+        if(_scoringTime <= Time.time && _ableToScore)
         {
             _score += scorePerTime;
-            _score += scorePerMouseAmount * currentMultiplier;
+            _score += scorePerMouseAmount * _currentMultiplier;
 
             scoreSO.score = _score;
 
@@ -58,14 +66,19 @@ public class Scoring : MonoBehaviour
 
     private void updateMultiplier()
     {//10 - 2,  15
-        if(getNumberOfMice() - currentMultiplier * mouseMultiplyCount >= mouseMultiplyCount)
+        if(getNumberOfMice() - _currentMultiplier * mouseMultiplyCount >= mouseMultiplyCount)
         {
             //Debug.Log("Increment multiplier");
-            currentMultiplier += 1;
+            _currentMultiplier += 1;
         }
     }
     private int getNumberOfMice()
     {
         return GameObject.FindGameObjectsWithTag("Mouse").Length;
+    }
+
+    private void turnOffScoring()
+    {
+        _ableToScore = false;
     }
 }
