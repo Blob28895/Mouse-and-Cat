@@ -7,11 +7,9 @@ using UnityEngine.Events;
 public class GameOverChannelSO : ScriptableObject
 {
     public event UnityAction GameOverEvent = delegate { };
-    public bool isGameOver { get; set; }
 
     public void RaiseEvent()
     {
-        isGameOver = true;
         GameOverEvent?.Invoke();
     }
 }

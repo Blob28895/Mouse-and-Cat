@@ -22,6 +22,7 @@ public class HealthSO : ScriptableObject
     [SerializeField] private GameOverChannelSO _gameOverChannel;
 
     private int _currentHealth;
+    private bool _isDead = false;
 
     void OnEnable()
     {
@@ -30,6 +31,7 @@ public class HealthSO : ScriptableObject
 
     public void resetHealth()
     {
+        _isDead = false;
 		_currentHealth = _startingHealth;
 	}
 
@@ -37,8 +39,9 @@ public class HealthSO : ScriptableObject
     {
         _currentHealth -= damage;
 
-        if (_currentHealth <= 0 && !_gameOverChannel.isGameOver)
+        if (_currentHealth <= 0 && !_isDead)
         {
+            _isDead = true;
             _gameOverChannel.RaiseEvent();
         }
     }

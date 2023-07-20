@@ -31,7 +31,8 @@ public class LeaderboardController : MonoBehaviour
     {
         await UnityServices.InitializeAsync();
 
-        await SignInAnonymously();
+        if(!AuthenticationService.Instance.IsSignedIn)
+            await SignInAnonymously();
     }
 
     private async Task SignInAnonymously()
@@ -42,7 +43,6 @@ public class LeaderboardController : MonoBehaviour
         };
         AuthenticationService.Instance.SignInFailed += s =>
         {
-            // Take some action here...
             Debug.Log(s);
         };
 
@@ -53,7 +53,7 @@ public class LeaderboardController : MonoBehaviour
 
     private void OnDisable() { _gameOverChannelSO.GameOverEvent -= IsLeaderboardScore; }
 
-    // Checks if new score is applicable and adds it to the leaderboard if necessary
+    // Adds new highscores to leaderboard, replaces existing score
     public async void IsLeaderboardScore()
     {
         // store current score just in case it gets changed
@@ -75,8 +75,6 @@ public class LeaderboardController : MonoBehaviour
         {
             AddScoreEntry(potentialLeaderboardScore);
         }
-
-        
     }
 
     private async void AddScoreEntry(int score)
