@@ -66,45 +66,35 @@ public class LeaderboardController : MonoBehaviour
         _scoreSO.scoreReported = true;
 
         // if player already has a high score entry, replace it
-        LeaderboardEntry playerEntry = await GetCurrentPlayerEntry();
-        if (playerEntry.Score < potentialLeaderboardScore)
+        int? currPlayerScore = await GetCurrentPlayerScore();
+        if(currPlayerScore != null && currPlayerScore < potentialLeaderboardScore)
+        {
+            AddScoreEntry(potentialLeaderboardScore - (int)currPlayerScore);
+        }
+        else
         {
             AddScoreEntry(potentialLeaderboardScore);
-            return;
         }
 
-        // if player doesn't have a high score entry and qualifies, add one
-        LeaderboardEntry minEntry = await GetMinimumLeaderboardScoreEntry();
-        if (minEntry.Score < potentialLeaderboardScore)
-        {
-            AddScoreEntry(potentialLeaderboardScore);
-            return;
-        }
+        
     }
 
     private async void AddScoreEntry(int score)
     {
+        Debug.Log("Adding score: " + score + " to leaderboard: " + _currLeaderboardId);
         var scoreResponse = await LeaderboardsService.Instance.AddPlayerScoreAsync(_currLeaderboardId, score);
     }
 
-    private async Task<LeaderboardEntry> GetMinimumLeaderboardScoreEntry()
-    {
-        var scoresResponse =
-            await LeaderboardsService.Instance.GetScoresAsync(_currLeaderboardId);
-        
-        var minEntry = scoresResponse.Results.Min();
-        return minEntry;
-    }
-
-    private async Task<LeaderboardEntry> GetCurrentPlayerEntry()
+    private async Task<int?> GetCurrentPlayerScore()
     {
         try
         {
-            return await LeaderboardsService.Instance.GetPlayerScoreAsync(_currLeaderboardId);
+            var entry = await LeaderboardsService.Instance.GetPlayerScoreAsync(_currLeaderboardId);
+            return (int) entry.Score;
         }
-        catch(Exception e)
+        catch(Exception)
         {
-            return default(LeaderboardEntry);
+            return null;
         }
     }
 }

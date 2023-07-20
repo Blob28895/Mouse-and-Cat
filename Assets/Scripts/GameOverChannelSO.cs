@@ -7,21 +7,11 @@ using UnityEngine.Events;
 public class GameOverChannelSO : ScriptableObject
 {
     public event UnityAction GameOverEvent = delegate { };
-    public bool isGameOver { get; private set; }
+    public bool isGameOver { get; set; }
 
     public void RaiseEvent()
     {
         isGameOver = true;
         GameOverEvent?.Invoke();
-    }
-
-    private void OnDisable()
-    {
-        isGameOver = false;
-    }
-
-    private void OnEnable()
-    {
-        isGameOver = false;
     }
 }

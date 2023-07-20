@@ -50,6 +50,7 @@ public class GameOver : MonoBehaviour
     public void reloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameOverChannel.isGameOver = false;
     }
     public bool getGameOver()
     {
