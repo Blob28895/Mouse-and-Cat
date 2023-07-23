@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     [Header("Collider Settings")]
     [Tooltip("Higher value = larger jump buffer")]
     [SerializeField] private float _boxCastDistance = 3f;
+    [Tooltip("Layers that we allow the player to jump off of")]
+    [SerializeField] private LayerMask _whatIsGround;
 
     [Header("Monobehavior References")]
     [SerializeField] private Animator _animator = default;
@@ -84,6 +86,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if ((Input.GetButtonDown("Jump") && !_isJumping)) { _isCharging = true; }
 		if (Input.GetButtonUp("Jump")) { resetJumpSlider(); }
+        
 	}
 	private void FixedUpdate()
     {
@@ -92,6 +95,7 @@ public class PlayerController : MonoBehaviour
         _rb.AddForce(_inputVector * _runSpeed, ForceMode2D.Impulse);
 
         CheckForGroundCollision();
+        Debug.Log(_isGrounded);
         if((Input.GetButton("Jump") && _isCharging)) { setJumpSlider();   }
         
         // keeps player from running faster than max run speed
@@ -142,12 +146,12 @@ public class PlayerController : MonoBehaviour
         Vector3 playerColliderSize = _playerCollider.bounds.size;
         Vector2 playerColliderSize2D = new Vector2(playerColliderSize.x, playerColliderSize.y);
 
-        RaycastHit2D raycastHit = Physics2D.BoxCast(colliderCenter2D, playerColliderSize2D, 0f, Vector2.down, _boxCastDistance, LayerMask.GetMask("Ground"));
+        RaycastHit2D raycastHit = Physics2D.BoxCast(colliderCenter2D, playerColliderSize2D, 0f, Vector2.down, _boxCastDistance, _whatIsGround);
 
         if(raycastHit.collider != null) { _isJumping = false; } 
         else { _isJumping = true;}
 
-        raycastHit = Physics2D.BoxCast(colliderCenter2D, playerColliderSize2D, 0f, Vector2.down, 1f, LayerMask.GetMask("Ground"));
+        raycastHit = Physics2D.BoxCast(colliderCenter2D, playerColliderSize2D, 0f, Vector2.down, 1f, _whatIsGround);
 
         if(raycastHit.collider == null) { _isGrounded = false; } 
         else { _isGrounded = true;}
