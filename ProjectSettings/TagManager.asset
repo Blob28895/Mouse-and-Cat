@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Mouse
+  - DamageToPlayer
   layers:
   - Default
   - TransparentFX
@@ -14,10 +15,10 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
-  - 
-  - 
+  - Platform
+  - Falling Object
+  - Player
+  - Enemy
   - 
   - 
   - 

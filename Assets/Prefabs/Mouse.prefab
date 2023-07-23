@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 5544964736351420543}
   - component: {fileID: 5544964736351420541}
   - component: {fileID: 7146994716192958196}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Mouse
   m_TagString: Mouse
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ MonoBehaviour:
   _damageEffect: {fileID: 7533166473212335372}
   ground:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   _walkingCollider: {fileID: 5544964736351420543}
   _ClimbingCollider: {fileID: 5544964737861062702}
   walkingSpeed: 3
@@ -336,7 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5544964737861062703}
   - component: {fileID: 5544964737861062702}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Climbing Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
