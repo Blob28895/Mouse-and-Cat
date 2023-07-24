@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
         _rb.AddForce(_inputVector * _runSpeed, ForceMode2D.Impulse);
 
         CheckForGroundCollision();
-        Debug.Log(_isGrounded);
+        //Debug.Log(_isGrounded);
         if((Input.GetButton("Jump") && _isCharging)) { setJumpSlider();   }
         
         // keeps player from running faster than max run speed
