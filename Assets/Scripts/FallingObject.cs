@@ -10,6 +10,7 @@ public class FallingObject : MonoBehaviour
     
 
     private Animator _animator;
+    private bool _isGrounded;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,25 +21,21 @@ public class FallingObject : MonoBehaviour
 	{
 		if(collision.gameObject.CompareTag("Ground"))
         {
+            _isGrounded = true;
             _animator.SetTrigger("hitGround");
             Destroy(gameObject, _groundTime);
-            //StartCoroutine(waitThenDestroy());
         }
 	}
 
-    /*private IEnumerator waitThenDestroy()
-    {
-        yield return new WaitForSeconds(_groundTime);
-        Destroy(gameObject);
-    }*/
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-        if(!collision.CompareTag("Mouse"))
+        if(!collision.CompareTag("Mouse") || _isGrounded)
         {
             return;
         }
 
+        
         GameObject mouse;
         if(collision.name.ToLower().Contains("collider"))
         {
