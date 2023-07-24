@@ -140,4 +140,9 @@ public class MouseController : MonoBehaviour
         _damageEffect.SetActive(false);
         StartCoroutine(playerHealth.AttemptToRegen());
     }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
 }

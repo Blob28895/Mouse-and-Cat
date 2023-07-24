@@ -7,6 +7,8 @@ public class FallingObject : MonoBehaviour
     [Tooltip("Amount of time in seconds that the object will take to despawn after hitting the ground.")]
     [SerializeField] private float _groundTime;
 
+    
+
     private Animator _animator;
     // Start is called before the first frame update
     void Start()
@@ -19,13 +21,33 @@ public class FallingObject : MonoBehaviour
 		if(collision.gameObject.CompareTag("Ground"))
         {
             _animator.SetTrigger("hitGround");
-            StartCoroutine(waitThenDestroy());
+            Destroy(gameObject, _groundTime);
+            //StartCoroutine(waitThenDestroy());
         }
 	}
 
-    private IEnumerator waitThenDestroy()
+    /*private IEnumerator waitThenDestroy()
     {
         yield return new WaitForSeconds(_groundTime);
         Destroy(gameObject);
-    }
+    }*/
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+        if(!collision.CompareTag("Mouse"))
+        {
+            return;
+        }
+
+        GameObject mouse;
+        if(collision.name.ToLower().Contains("collider"))
+        {
+            mouse = collision.transform.parent.gameObject;
+        }
+        else
+        {
+            mouse = collision.gameObject;
+        }
+        mouse.GetComponent<MouseController>().Die();
+	}
 }
