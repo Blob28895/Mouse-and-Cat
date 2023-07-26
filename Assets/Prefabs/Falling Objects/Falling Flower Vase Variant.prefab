@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8485794866045754892, guid: 1e72b79dcd0c3b44e950ba47d6a4dcc7, type: 3}
       propertyPath: m_Name
-      value: Falling Flower Vase
+      value: Falling Flower Vase Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8485794866045754892, guid: 1e72b79dcd0c3b44e950ba47d6a4dcc7, type: 3}
       propertyPath: m_IsActive
@@ -117,11 +117,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8485794866045754899, guid: 1e72b79dcd0c3b44e950ba47d6a4dcc7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8485794866045754899, guid: 1e72b79dcd0c3b44e950ba47d6a4dcc7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.98
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8485794866045754899, guid: 1e72b79dcd0c3b44e950ba47d6a4dcc7, type: 3}
       propertyPath: m_LocalPosition.z

@@ -7,8 +7,6 @@ public class FallingObject : MonoBehaviour
     [Tooltip("Amount of time in seconds that the object will take to despawn after hitting the ground.")]
     [SerializeField] private float _groundTime;
 
-    
-
     private Animator _animator;
     private bool _isGrounded;
     // Start is called before the first frame update
@@ -30,21 +28,28 @@ public class FallingObject : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-        if(!collision.CompareTag("Mouse") || _isGrounded)
+        Debug.Log("Trigger entered");
+        Debug.Log(collision.gameObject.name);
+		GameObject mouse;
+		if (collision.name.ToLower().Contains("collider"))
+		{
+			mouse = collision.transform.parent.gameObject;
+		}
+		else
+		{
+			mouse = collision.gameObject;
+		}
+
+		if (!mouse.CompareTag("Mouse") || _isGrounded)
         {
             return;
         }
+        Debug.Log("Collision is a mouse");
 
         
-        GameObject mouse;
-        if(collision.name.ToLower().Contains("collider"))
-        {
-            mouse = collision.transform.parent.gameObject;
-        }
-        else
-        {
-            mouse = collision.gameObject;
-        }
+        
+
+        Debug.Log("Killing mouse");
         mouse.GetComponent<MouseController>().Die();
 	}
 }
