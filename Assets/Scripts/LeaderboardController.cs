@@ -25,6 +25,7 @@ public class LeaderboardController : MonoBehaviour
 {
     [SerializeField] private ScoreSO _scoreSO;
     [SerializeField] private GameOverChannelSO _gameOverChannelSO;
+    [SerializeField] private LeaderboardChannelSO _leaderboardChannelSO;
 
     private async void Awake()
     {
@@ -48,6 +49,11 @@ public class LeaderboardController : MonoBehaviour
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
     }
 
+    private void Start()
+    {
+        _leaderboardChannelSO.GetLeaderboardEntriesEvent += GetLeaderboardEntries;
+    }
+
     private void OnEnable() { _gameOverChannelSO.GameOverEvent += IsLeaderboardScore; }
 
     private void OnDisable() { _gameOverChannelSO.GameOverEvent -= IsLeaderboardScore; }
@@ -60,6 +66,12 @@ public class LeaderboardController : MonoBehaviour
 
         if (potentialLeaderboardScore >= _scoreSO.highScore)
             AddScoreEntry(potentialLeaderboardScore, GetLeaderboardId());
+    }
+
+    private async Task<List<LeaderboardEntry>> GetLeaderboardEntries()
+    {
+        var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(GetLeaderboardId());
+        return scoresResponse.Results;
     }
 
     private async void AddScoreEntry(int score, String leaderboardId)

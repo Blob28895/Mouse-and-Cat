@@ -1062,6 +1062,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1779122638871044616, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2583673267118299170, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
       propertyPath: m_Name
       value: High Scores Text
@@ -1258,6 +1262,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9059215433208561470, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
+      propertyPath: leaderboardPanel
+      value: 
+      objectReference: {fileID: 229951056071452559}
     - target: {fileID: 9059215433225511054, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1266,8 +1274,33 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3574774323249589997, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
+--- !u!1 &208317082535915068 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1829678132016982971, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
+  m_PrefabInstance: {fileID: 1981660635445773703}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &229951056071452559 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1779122638871044616, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
+  m_PrefabInstance: {fileID: 1981660635445773703}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3224529060790355155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229951056071452559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86fd95b960749fd459e420dd82f805a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scoresPanel: {fileID: 208317082535915068}
+  _leaderboardChannel: {fileID: 11400000, guid: b5acdb694dfc8eb4bb88835807869762, type: 2}
 --- !u!114 &7365788549796281017 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9059215433208561470, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}

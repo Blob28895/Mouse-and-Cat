@@ -9,6 +9,7 @@ public class GameOver : MonoBehaviour
 {
     [Header("UI References")]
     [SerializeField] private GameObject gameOverPanel = default;
+    [SerializeField] private GameObject leaderboardPanel = default;
     [SerializeField] private TextMeshProUGUI highScoreUI = default;
     [SerializeField] private TextMeshProUGUI scoreUI = default;
     [SerializeField] private TextMeshProUGUI newHighScoreUI = default;
@@ -39,6 +40,7 @@ public class GameOver : MonoBehaviour
         Debug.Log("Game Over");
         if(scoreSO.score >= scoreSO.highScore)
         {
+            leaderboardPanel.SetActive(true);
             newHighScoreUI.gameObject.SetActive(true);
         }
 
