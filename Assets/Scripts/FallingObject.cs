@@ -39,7 +39,7 @@ public class FallingObject : MonoBehaviour
 		{
 			mouse = collision.gameObject;
 		}
-        Debug.Log("Checking if " + mouse.name + " is a mouse");
+        //Debug.Log("Checking if " + mouse.name + " is a mouse");
 		if (!mouse.CompareTag("Mouse") || _isGrounded)
         {
             return;
@@ -49,7 +49,7 @@ public class FallingObject : MonoBehaviour
         
         
 
-        Debug.Log("Killing: " + mouse.name);
+        //Debug.Log("Killing: " + mouse.name);
         mouse.GetComponent<MouseController>().Die();
 	}
 }
