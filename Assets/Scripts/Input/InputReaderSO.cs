@@ -10,6 +10,7 @@ public class InputReaderSO : ScriptableObject, GameInput.IGameplayActions, GameI
     public event UnityAction<InputAction.CallbackContext> JumpEvent = delegate { };
     public event UnityAction PauseEvent = delegate { };
     public event UnityAction UnpauseEvent = delegate { };
+    public event UnityAction KnockOverEvent = delegate { };
 
     private GameInput _gameInput;
 
@@ -41,4 +42,5 @@ public class InputReaderSO : ScriptableObject, GameInput.IGameplayActions, GameI
     public void OnJump(InputAction.CallbackContext context) { JumpEvent.Invoke(context); }
     public void OnPause(InputAction.CallbackContext context) { PauseEvent.Invoke();}
     public void OnUnpause(InputAction.CallbackContext context) { UnpauseEvent.Invoke();}
+    public void OnKnockOver(InputAction.CallbackContext context) { KnockOverEvent.Invoke(); }
 }

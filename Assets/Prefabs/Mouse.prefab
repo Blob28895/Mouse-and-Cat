@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2391211740587670134}
   - component: {fileID: 4007617384395495924}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Biting Collider
   m_TagString: DamageToPlayer
   m_Icon: {fileID: 0}
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 3489290199087358267}
   - component: {fileID: 4870534421681208395}
   - component: {fileID: 411779786067826044}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Blood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
