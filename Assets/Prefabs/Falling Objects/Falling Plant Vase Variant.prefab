@@ -32,6 +32,10 @@ PrefabInstance:
       value: -0.10776603
       objectReference: {fileID: 0}
     - target: {fileID: 7495810722761501811, guid: 1e72b79dcd0c3b44e950ba47d6a4dcc7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7495810722761501811, guid: 1e72b79dcd0c3b44e950ba47d6a4dcc7, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
       value: 1.2
       objectReference: {fileID: 0}
@@ -177,7 +181,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 115564182746106109}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -196,3 +200,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.81776047, y: 0.7867208}
   m_EdgeRadius: 0
+--- !u!58 &9095710304707214638
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115564182746106109}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.53

@@ -28,8 +28,8 @@ public class FallingObject : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-        Debug.Log("Trigger entered");
-        Debug.Log(collision.gameObject.name);
+        //Debug.Log("Trigger entered");
+        //Debug.Log(collision.gameObject.name);
 		GameObject mouse;
 		if (collision.name.ToLower().Contains("collider"))
 		{
@@ -39,17 +39,17 @@ public class FallingObject : MonoBehaviour
 		{
 			mouse = collision.gameObject;
 		}
-
+        Debug.Log("Checking if " + mouse.name + " is a mouse");
 		if (!mouse.CompareTag("Mouse") || _isGrounded)
         {
             return;
         }
-        Debug.Log("Collision is a mouse");
+        //Debug.Log("Collision is a mouse");
 
         
         
 
-        Debug.Log("Killing mouse");
+        Debug.Log("Killing: " + mouse.name);
         mouse.GetComponent<MouseController>().Die();
 	}
 }
