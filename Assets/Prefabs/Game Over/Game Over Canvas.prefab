@@ -112,6 +112,10 @@ PrefabInstance:
       propertyPath: m_fontColor.g
       value: 0.35345268
       objectReference: {fileID: 0}
+    - target: {fileID: 1779122638871044616, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7365788550745406844, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
       propertyPath: m_SizeDelta.x
       value: 261.4764

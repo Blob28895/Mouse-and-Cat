@@ -47,7 +47,7 @@ public class LeaderboardUI : MonoBehaviour
 
     private async void UpdateScoresUI()
     {   
-        while(_leaderboardChannel.isDefaultName && _scoreSO.score >= _scoreSO.highScore)
+        while(_leaderboardChannel.isDefaultName && _scoreSO.getScore() >= _scoreSO.highScores[gameObject.scene.name])
         {
             _nameEntryPanel.SetActive(true);
             await Task.Delay(1);

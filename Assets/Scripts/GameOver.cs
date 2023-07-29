@@ -37,7 +37,7 @@ public class GameOver : MonoBehaviour
         if (_gameOver) { return; }
 
         Debug.Log("Game Over");
-        if(scoreSO.score >= scoreSO.highScore)
+        if(scoreSO.getScore() >= scoreSO.highScores[gameObject.scene.name])
         {
             leaderboardPanel.SetActive(true);
             newHighScoreUI.gameObject.SetActive(true);
@@ -47,8 +47,8 @@ public class GameOver : MonoBehaviour
             gameOverPanel.SetActive(true);
         }
 
-        highScoreUI.text = "Highscore: " + scoreSO.highScore.ToString();
-        scoreUI.text = "Score: " + scoreSO.score.ToString();
+        highScoreUI.text = "Highscore: " + scoreSO.highScores[gameObject.scene.name].ToString();
+        scoreUI.text = "Score: " + scoreSO.getScore().ToString();
         _gameOver = true;
     }
 

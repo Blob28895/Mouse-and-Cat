@@ -50,7 +50,7 @@ public class Scoring : MonoBehaviour
             _score += scorePerTime;
             _score += scorePerMouseAmount * _currentMultiplier;
 
-            scoreSO.score = _score;
+            scoreSO.setScore(_score, gameObject.scene.name);
 
             scoreText.text = " ";
             scoreText.text = "Score: " + _score.ToString();

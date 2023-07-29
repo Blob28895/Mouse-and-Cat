@@ -66,9 +66,9 @@ public class LeaderboardController : MonoBehaviour
     public void IsLeaderboardScore()
     {
         // store current score just in case it gets changed
-        int potentialLeaderboardScore = _scoreSO.score;
+        int potentialLeaderboardScore = _scoreSO.getScore();
 
-        if (potentialLeaderboardScore >= _scoreSO.highScore)
+        if (potentialLeaderboardScore >= _scoreSO.highScores[gameObject.scene.name])
             AddScoreEntry(potentialLeaderboardScore, GetLeaderboardId());
     }
 
