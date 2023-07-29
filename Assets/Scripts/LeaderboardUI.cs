@@ -25,7 +25,7 @@ public class LeaderboardUI : MonoBehaviour
         {
             TextMeshProUGUI[] textObjects = obj.GetComponentsInChildren<TextMeshProUGUI>();
             
-            _scoreEntries.Add(new ScoreEntry (textObjects[0], textObjects[1], textObjects[2]));
+            _scoreEntries.Add(new ScoreEntry (textObjects[0], textObjects[2], textObjects[1]));
         }
     }
 
@@ -34,13 +34,12 @@ public class LeaderboardUI : MonoBehaviour
         UpdateScoresUI();
     }
 
-    private void UpdateScoresUI()
+    private async void UpdateScoresUI()
     {
-        Debug.Log("Updating Scores UI");
-        LeaderboardEntry[] leaderboard = _leaderboardChannel.GetLeaderboardEntries();
-        Debug.Log("Got Entries from Server");
+        LeaderboardEntry[] leaderboard = await _leaderboardChannel.GetLeaderboardEntries();
+        Debug.Log("Updating UI with Entries from Server");
         
-        for(int i = 0; i < _scoreEntries.Count; i ++)
+        for(int i = 0; i < leaderboard.Length; i ++)
         {
             _scoreEntries[i].nameText.text = leaderboard[i].PlayerName.ToString();
             _scoreEntries[i].scoreText.text = leaderboard[i].Score.ToString();

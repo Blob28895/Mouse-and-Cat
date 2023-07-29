@@ -9,9 +9,10 @@ public class LeaderboardChannelSO : ScriptableObject
 {
     public event GetLeaderboardEntriesDelegate GetLeaderboardEntriesEvent;
 
-    public LeaderboardEntry[] GetLeaderboardEntries()
+    public async Task<LeaderboardEntry[]> GetLeaderboardEntries()
     {
-        return GetLeaderboardEntriesEvent?.Invoke().Result.ToArray();
+        var result = await GetLeaderboardEntriesEvent?.Invoke();
+        return result.ToArray();
     }
 }
 
