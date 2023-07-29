@@ -33,6 +33,8 @@ public class LeaderboardController : MonoBehaviour
 
         if(!AuthenticationService.Instance.IsSignedIn)
             await SignInAnonymously();
+
+        Debug.Log(await AuthenticationService.Instance.GetPlayerNameAsync());
     }
 
     private async Task SignInAnonymously()
@@ -52,6 +54,7 @@ public class LeaderboardController : MonoBehaviour
     private void Start()
     {
         _leaderboardChannelSO.GetLeaderboardEntriesEvent += GetLeaderboardEntries;
+        _leaderboardChannelSO.ChangePlayerNameEvent += ChangePlayerName;
     }
 
     private void OnEnable() { _gameOverChannelSO.GameOverEvent += IsLeaderboardScore; }
@@ -66,6 +69,11 @@ public class LeaderboardController : MonoBehaviour
 
         if (potentialLeaderboardScore >= _scoreSO.highScore)
             AddScoreEntry(potentialLeaderboardScore, GetLeaderboardId());
+    }
+
+    private void ChangePlayerName(String name)
+    {
+        AuthenticationService.Instance.UpdatePlayerNameAsync(name);
     }
 
     private async Task<List<LeaderboardEntry>> GetLeaderboardEntries()
