@@ -3313,46 +3313,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 861825661160819120, guid: 1544cedc80d1cb04a93a1b895058eed2, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 861825661160819120, guid: 1544cedc80d1cb04a93a1b895058eed2, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2642227347588700175, guid: 1544cedc80d1cb04a93a1b895058eed2, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2642227347588700175, guid: 1544cedc80d1cb04a93a1b895058eed2, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2642227347588700175, guid: 1544cedc80d1cb04a93a1b895058eed2, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3742488124236060831, guid: 1544cedc80d1cb04a93a1b895058eed2, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -515.3451
-      objectReference: {fileID: 0}
-    - target: {fileID: 3742488124236060831, guid: 1544cedc80d1cb04a93a1b895058eed2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 381.7393
-      objectReference: {fileID: 0}
-    - target: {fileID: 6955027279691687842, guid: 1544cedc80d1cb04a93a1b895058eed2, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6955027279691687842, guid: 1544cedc80d1cb04a93a1b895058eed2, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6955027279691687842, guid: 1544cedc80d1cb04a93a1b895058eed2, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7365788550539320066, guid: 1544cedc80d1cb04a93a1b895058eed2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3444,10 +3404,6 @@ PrefabInstance:
     - target: {fileID: 7365788550539320070, guid: 1544cedc80d1cb04a93a1b895058eed2, type: 3}
       propertyPath: m_Name
       value: Game Over Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 7365788550539320070, guid: 1544cedc80d1cb04a93a1b895058eed2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1544cedc80d1cb04a93a1b895058eed2, type: 3}
