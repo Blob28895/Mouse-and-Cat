@@ -11,8 +11,13 @@ using System.Linq;
 
 public class LeaderboardUI : MonoBehaviour
 {
+    [Header("UI References")]
     [SerializeField] private GameObject _scoresPanel;
+    [SerializeField] private GameObject _nameEntryPanel;
+
+    [Header("Asset References")]
     [SerializeField] private LeaderboardChannelSO _leaderboardChannel = default;
+    [SerializeField] private ScoreSO _scoreSO = default;
 
     private List<ScoreEntry> _scoreEntries = new List<ScoreEntry>();
 
@@ -31,6 +36,12 @@ public class LeaderboardUI : MonoBehaviour
 
     private void OnEnable()
     {
+        // if player hasn't set a name, prompt them to do so
+        if(_leaderboardChannel.isDefaultName && _scoreSO.score >= _scoreSO.highScore)
+        {
+            _nameEntryPanel.SetActive(true);
+        }
+
         UpdateScoresUI();
     }
 
@@ -45,6 +56,12 @@ public class LeaderboardUI : MonoBehaviour
             _scoreEntries[i].scoreText.text = leaderboard[i].Score.ToString();
             _scoreEntries[i].rankText.text = (leaderboard[i].Rank + 1).ToString();
         }
+    }
+
+    public void SubmitName(TMP_InputField inputField)
+    {
+        _leaderboardChannel.ChangePlayerName(inputField.text);
+        _nameEntryPanel.SetActive(false);
     }
 }
 
