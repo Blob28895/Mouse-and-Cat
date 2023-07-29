@@ -32,6 +32,8 @@ public class MouseController : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] private AudioSource _squeak;
+    [Tooltip("Object that will spawn to play the mouse death noise when a mouse dies. Since it cant be playing a sound while also destroying itself")]
+    [SerializeField] private GameObject _deathSoundObject;
 
 
     void Start()
@@ -143,6 +145,7 @@ public class MouseController : MonoBehaviour
 
     public void Die()
     {
+        Instantiate(_deathSoundObject);
         Destroy(gameObject);
     }
 }
