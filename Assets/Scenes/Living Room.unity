@@ -2231,6 +2231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scoreSO: {fileID: 11400000, guid: 9e811ab8095b624428113daadfefd0c7, type: 2}
   _gameOverChannelSO: {fileID: 11400000, guid: c3614220474c2114190d55612b911f13, type: 2}
+  _leaderboardChannelSO: {fileID: 11400000, guid: b5acdb694dfc8eb4bb88835807869762, type: 2}
 --- !u!4 &1472041218
 Transform:
   m_ObjectHideFlags: 0
