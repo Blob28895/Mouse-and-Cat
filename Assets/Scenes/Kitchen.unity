@@ -3384,6 +3384,63 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 1.16}
   m_EdgeRadius: 0
+--- !u!1001 &1785928579
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6401136550181473012, guid: 1fe226fa7ffe1fa43b30256d110899ea, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401136550181473012, guid: 1fe226fa7ffe1fa43b30256d110899ea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.278939
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401136550181473012, guid: 1fe226fa7ffe1fa43b30256d110899ea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.3693867
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401136550181473012, guid: 1fe226fa7ffe1fa43b30256d110899ea, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.060579382
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401136550181473012, guid: 1fe226fa7ffe1fa43b30256d110899ea, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401136550181473012, guid: 1fe226fa7ffe1fa43b30256d110899ea, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401136550181473012, guid: 1fe226fa7ffe1fa43b30256d110899ea, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401136550181473012, guid: 1fe226fa7ffe1fa43b30256d110899ea, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401136550181473012, guid: 1fe226fa7ffe1fa43b30256d110899ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401136550181473012, guid: 1fe226fa7ffe1fa43b30256d110899ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401136550181473012, guid: 1fe226fa7ffe1fa43b30256d110899ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401136550181473014, guid: 1fe226fa7ffe1fa43b30256d110899ea, type: 3}
+      propertyPath: m_Name
+      value: LeaderboardController
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1fe226fa7ffe1fa43b30256d110899ea, type: 3}
 --- !u!1001 &1825786712
 PrefabInstance:
   m_ObjectHideFlags: 0
