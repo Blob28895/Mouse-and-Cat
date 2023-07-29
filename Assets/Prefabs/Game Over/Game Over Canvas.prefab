@@ -108,6 +108,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7365788550539320066}
     m_Modifications:
+    - target: {fileID: 117204261, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.35345268
+      objectReference: {fileID: 0}
     - target: {fileID: 7365788550745406844, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
       propertyPath: m_SizeDelta.x
       value: 261.4764
@@ -206,7 +210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9059215433915839677, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cdbc12eec2ae774d869f7b8186fc1aa, type: 3}
