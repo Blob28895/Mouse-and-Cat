@@ -43,7 +43,7 @@ public class LeaderboardUI : MonoBehaviour
         {
             _scoreEntries[i].nameText.text = leaderboard[i].PlayerName.ToString();
             _scoreEntries[i].scoreText.text = leaderboard[i].Score.ToString();
-            _scoreEntries[i].rankText.text = leaderboard[i].Rank.ToString();
+            _scoreEntries[i].rankText.text = (leaderboard[i].Rank + 1).ToString();
         }
     }
 }
