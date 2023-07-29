@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using Unity.Services.Leaderboards.Models;
 using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.Events;
+using Unity.Services.Leaderboards.Models;
 
 [CreateAssetMenu(fileName = "LeaderboardChannel", menuName = "ScriptableObjects/LeaderboardChannel", order = 1)]
 public class LeaderboardChannelSO : ScriptableObject
 {
     public event GetLeaderboardEntriesDelegate GetLeaderboardEntriesEvent;
     public event ChangePlayerNameDelegate ChangePlayerNameEvent;
+    public event UnityAction ScoreSuccessfullyUploadedEvent = delegate { };
 
     public bool isDefaultName { get; private set;} = true;
 
@@ -22,6 +24,11 @@ public class LeaderboardChannelSO : ScriptableObject
     {
         ChangePlayerNameEvent?.Invoke(name);
         isDefaultName = false;
+    }
+
+    public void RaiseScoreSuccessfullyUploadedEvent()
+    {
+        ScoreSuccessfullyUploadedEvent?.Invoke();
     }
 }
 

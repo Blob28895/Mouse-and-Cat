@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using Unity.Services.Leaderboards.Models;
 using Unity.Services.Authentication;
@@ -36,17 +37,22 @@ public class LeaderboardUI : MonoBehaviour
 
     private void OnEnable()
     {
-        // if player hasn't set a name, prompt them to do so
-        if(_leaderboardChannel.isDefaultName && _scoreSO.score >= _scoreSO.highScore)
-        {
-            _nameEntryPanel.SetActive(true);
-        }
+        _leaderboardChannel.ScoreSuccessfullyUploadedEvent += UpdateScoresUI;
+    }
 
-        UpdateScoresUI();
+    private void OnDisable()
+    {
+        _leaderboardChannel.ScoreSuccessfullyUploadedEvent -= UpdateScoresUI;
     }
 
     private async void UpdateScoresUI()
-    {
+    {   
+        while(_leaderboardChannel.isDefaultName && _scoreSO.score >= _scoreSO.highScore)
+        {
+            _nameEntryPanel.SetActive(true);
+            await Task.Delay(1);
+        }
+
         LeaderboardEntry[] leaderboard = await _leaderboardChannel.GetLeaderboardEntries();
         Debug.Log("Updating UI with Entries from Server");
         

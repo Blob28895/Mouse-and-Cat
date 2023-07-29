@@ -33,8 +33,6 @@ public class LeaderboardController : MonoBehaviour
 
         if(!AuthenticationService.Instance.IsSignedIn)
             await SignInAnonymously();
-
-        Debug.Log(await AuthenticationService.Instance.GetPlayerNameAsync());
     }
 
     private async Task SignInAnonymously()
@@ -51,17 +49,20 @@ public class LeaderboardController : MonoBehaviour
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
     }
 
-    private void Start()
-    {
+    private void OnEnable() 
+    { 
+        _gameOverChannelSO.GameOverEvent += IsLeaderboardScore; 
         _leaderboardChannelSO.GetLeaderboardEntriesEvent += GetLeaderboardEntries;
         _leaderboardChannelSO.ChangePlayerNameEvent += ChangePlayerName;
     }
 
-    private void OnEnable() { _gameOverChannelSO.GameOverEvent += IsLeaderboardScore; }
+    private void OnDisable() 
+    { 
+        _gameOverChannelSO.GameOverEvent -= IsLeaderboardScore;
+        _leaderboardChannelSO.GetLeaderboardEntriesEvent -= GetLeaderboardEntries;
+        _leaderboardChannelSO.ChangePlayerNameEvent -= ChangePlayerName;
+    }
 
-    private void OnDisable() { _gameOverChannelSO.GameOverEvent -= IsLeaderboardScore; }
-
-    // Adds new highscores to leaderboard, replaces existing score
     public void IsLeaderboardScore()
     {
         // store current score just in case it gets changed
@@ -69,6 +70,13 @@ public class LeaderboardController : MonoBehaviour
 
         if (potentialLeaderboardScore >= _scoreSO.highScore)
             AddScoreEntry(potentialLeaderboardScore, GetLeaderboardId());
+    }
+
+    private async void AddScoreEntry(int score, String leaderboardId)
+    {
+        Debug.Log("Adding score: " + score + " to leaderboard: " + leaderboardId);
+        await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardId, score);
+        _leaderboardChannelSO.RaiseScoreSuccessfullyUploadedEvent();
     }
 
     private void ChangePlayerName(String name)
@@ -80,12 +88,6 @@ public class LeaderboardController : MonoBehaviour
     {
         var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(GetLeaderboardId());
         return scoresResponse.Results;
-    }
-
-    private async void AddScoreEntry(int score, String leaderboardId)
-    {
-        Debug.Log("Adding score: " + score + " to leaderboard: " + leaderboardId);
-        var scoreResponse = await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardId, score);
     }
 
     // gets id from scene name (scene name with underscores instead of spaces)
