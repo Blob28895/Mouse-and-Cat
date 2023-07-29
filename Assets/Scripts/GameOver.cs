@@ -36,12 +36,15 @@ public class GameOver : MonoBehaviour
     {
         if (_gameOver) { return; }
 
-        gameOverPanel.SetActive(true);
         Debug.Log("Game Over");
         if(scoreSO.score >= scoreSO.highScore)
         {
             leaderboardPanel.SetActive(true);
             newHighScoreUI.gameObject.SetActive(true);
+        }
+        else
+        {
+            gameOverPanel.SetActive(true);
         }
 
         highScoreUI.text = "Highscore: " + scoreSO.highScore.ToString();
