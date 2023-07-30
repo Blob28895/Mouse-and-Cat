@@ -35,6 +35,7 @@ public class LeaderboardController : MonoBehaviour
             await SignInAnonymously();
 
         // check if default name
+        // THIS IS KINDA HARDCODED, OUR NAMES ARE LIMITED TO 8 CHARS IN THE INPUT BOX
         var playerName = await AuthenticationService.Instance.GetPlayerNameAsync();
         if(playerName.ToString().Length <= 8)
         {
