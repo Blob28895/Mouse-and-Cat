@@ -44,6 +44,7 @@ public class GameOver : MonoBehaviour
         }
         else
         {
+            leaderboardPanel.SetActive(false);
             gameOverPanel.SetActive(true);
         }
 
