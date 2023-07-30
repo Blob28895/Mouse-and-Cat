@@ -33,6 +33,13 @@ public class LeaderboardController : MonoBehaviour
 
         if(!AuthenticationService.Instance.IsSignedIn)
             await SignInAnonymously();
+
+        // check if default name
+        var playerName = await AuthenticationService.Instance.GetPlayerNameAsync();
+        if(playerName.ToString().Length <= 8)
+        {
+            _leaderboardChannelSO.isDefaultName = false;
+        }
     }
 
     private async Task SignInAnonymously()

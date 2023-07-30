@@ -12,7 +12,7 @@ public class LeaderboardChannelSO : ScriptableObject
     public event ChangePlayerNameDelegate ChangePlayerNameEvent;
     public event UnityAction ScoreSuccessfullyUploadedEvent = delegate { };
 
-    public bool isDefaultName { get; private set;} = true;
+    public bool isDefaultName { get; set;} = true;
 
     public async Task<LeaderboardEntry[]> GetLeaderboardEntries()
     {
