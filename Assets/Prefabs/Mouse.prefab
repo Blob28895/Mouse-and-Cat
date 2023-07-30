@@ -180,7 +180,7 @@ MonoBehaviour:
     m_Bits: 192
   _walkingCollider: {fileID: 5544964736351420543}
   _ClimbingCollider: {fileID: 5544964737861062702}
-  walkingSpeed: 4
+  walkingSpeed: 3
   climbingSpeed: 2
   _squeak: {fileID: 7146994716192958196}
   _deathSoundObject: {fileID: 2855960428331104174, guid: 62669c3e4b5769a48acc963b0baf0c4e, type: 3}
