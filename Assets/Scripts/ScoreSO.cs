@@ -7,11 +7,16 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "Score", menuName = "ScriptableObjects/Score", order = 1)]
 public class ScoreSO : ScriptableObject
 {
-    public Dictionary<string, int> highScores = new Dictionary<string, int>();
+    public Dictionary<string, int> highScores;
     private int _score = 0;
 
     public void setScore(int s, string sceneName)
     {
+        if(highScores == null)
+        {
+            highScores = new Dictionary<string, int>();
+        }
+        
         _score = s;
 
         if(highScores.ContainsKey(sceneName))
@@ -23,12 +28,13 @@ public class ScoreSO : ScriptableObject
         }
         else
         {
-            highScores.Add(sceneName, _score);
+            highScores[sceneName] = _score;
         }
     }
 
     public int getScore()
     {
+        Debug.Log("Getting score: " + _score);
         return _score;
     }
     
