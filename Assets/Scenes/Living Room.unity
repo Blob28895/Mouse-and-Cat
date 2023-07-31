@@ -700,6 +700,7 @@ MonoBehaviour:
   Mouse: {fileID: 5544964736351420539, guid: 5bb87e73085155f4a9272d988b45bb0d, type: 3}
   spawnLocation: {fileID: 358885768}
   spawningInterval: 6
+  _gameOver: {fileID: 11400000, guid: c3614220474c2114190d55612b911f13, type: 2}
 --- !u!4 &422133975 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5276030752204073432, guid: 97d4a2142936cfa4fbe5cdfd23f1d8d6, type: 3}
@@ -3006,6 +3007,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 894317156}
     m_Modifications:
+    - target: {fileID: 3172900487071022078, guid: 48dec02240e4e1b43943d6ef7a173961, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 11400000, guid: c3614220474c2114190d55612b911f13, type: 2}
     - target: {fileID: 3172900487599274753, guid: 48dec02240e4e1b43943d6ef7a173961, type: 3}
       propertyPath: m_RootOrder
       value: 5

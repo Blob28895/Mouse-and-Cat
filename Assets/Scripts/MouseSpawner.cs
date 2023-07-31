@@ -10,7 +10,20 @@ public class MouseSpawner : MonoBehaviour
     [Tooltip("Numer of seconds between mice spawning")]
     [SerializeField] private float spawningInterval = 6f;
 
+    [Header("Asset References")]
+    [SerializeField] private GameOverChannelSO _gameOver = default;
+
     private float _spawnTime = 0f;
+
+    void OnEnable()
+    {
+        _gameOver.GameOverEvent += turnOffSpawning;
+    }
+
+    void OnDisable()
+    {
+        _gameOver.GameOverEvent -= turnOffSpawning;
+    }
 
     // Update is called once per frame
     void Update()
@@ -22,5 +35,10 @@ public class MouseSpawner : MonoBehaviour
             mouse.transform.position = spawnLocation.position;
             _spawnTime =  Time.time + spawningInterval; 
         }
+    }
+
+    private void turnOffSpawning()
+    {
+        this.enabled = false;
     }
 }
