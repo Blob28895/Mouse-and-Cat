@@ -26,7 +26,11 @@ public class KnockableObject : MonoBehaviour
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _defaultMaterial = _spriteRenderer.material;
+    }
 
+    private void OnDisable()
+    {
+        _inputReader.KnockOverEvent -= KnockOver;
     }
 
 	private void KnockOver()
@@ -43,9 +47,10 @@ public class KnockableObject : MonoBehaviour
         yield return new WaitForSeconds(respawnTime);
 		_spriteRenderer.enabled = true;
     }
-	private void OnTriggerStay2D(Collider2D collision)
+	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if(!collision.gameObject.CompareTag("Player")) { return; }
+
 		_inputReader.KnockOverEvent += KnockOver;
 		_spriteRenderer.material = outlineMaterial;
         _playerInRange = true;
@@ -54,6 +59,7 @@ public class KnockableObject : MonoBehaviour
 	private void OnTriggerExit2D(Collider2D collision)
 	{
 		if (!collision.gameObject.CompareTag("Player")){ return; }
+
 		_inputReader.KnockOverEvent -= KnockOver;
 		_spriteRenderer.material = _defaultMaterial;
         _playerInRange = false;
