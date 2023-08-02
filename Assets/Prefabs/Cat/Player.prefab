@@ -255,6 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxRunSpeed: 10
   _runSpeed: 1
+  _decelerationIntensity: 1.2
   _minJumpForce: 3
   _maxJumpForce: 5
   _jumpForce: 6
