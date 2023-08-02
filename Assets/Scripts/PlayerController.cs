@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [Header("Run Settings")]
     [SerializeField] private float _maxRunSpeed = 5f;
     [SerializeField] private float _runSpeed = 1f;
+    [Tooltip("How much the player will horizontally decelerate when releasing a movement key. Higher number means faster deceleration")]
+    [SerializeField] private float _decelerationIntensity = 2f;
 
     [Header("Jump Settings")]
 
@@ -97,7 +99,10 @@ public class PlayerController : MonoBehaviour
         CheckForGroundCollision();
         //Debug.Log(_isGrounded);
         if((Input.GetButton("Jump") && _isCharging)) { setJumpSlider();   }
-        
+
+        //slows the player down if they arent holding a movement key
+        if (_inputVector == Vector2.zero) { decelerate(); }
+
         // keeps player from running faster than max run speed
         if(_rb.velocity.x > _maxRunSpeed)
         {
@@ -123,12 +128,17 @@ public class PlayerController : MonoBehaviour
             _rb.gravityScale = 1f;
         }
     }
+    
+    private void decelerate()
+    {
+        _rb.velocity = new Vector2(_rb.velocity.x * (1f / _decelerationIntensity), _rb.velocity.y);
+    }
 
     private void SetAnimatorParameters()
     {
-        bool isRunning = _rb.velocity.x > .01f || _rb.velocity.x < -.01f;
-        _animator.SetBool("isRunning", isRunning);
-
+        //bool isRunning = _rb.velocity.x > .01f || _rb.velocity.x < -.01f;
+        _animator.SetBool("isRunning", (_inputVector != Vector2.zero));
+        
         _animator.SetBool("isJumping", _isJumping);
 
         _animator.SetFloat("runSpeed", _rb.velocity.x / _maxRunSpeed);
