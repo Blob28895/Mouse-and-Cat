@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour
         
         _animator.SetBool("isJumping", _isJumping);
 
-        _animator.SetFloat("runSpeed", _rb.velocity.x / _maxRunSpeed);
+        _animator.SetFloat("runSpeed", Math.Abs(_rb.velocity.x * 1.1f) / _maxRunSpeed);
     }
 
     private void CheckForGroundCollision()
