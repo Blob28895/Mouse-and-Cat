@@ -27,6 +27,8 @@ public class LeaderboardController : MonoBehaviour
     [SerializeField] private GameOverChannelSO _gameOverChannelSO;
     [SerializeField] private LeaderboardChannelSO _leaderboardChannelSO;
 
+    private ProfanityFilter _filter = new ProfanityFilter();
+
     private async void Awake()
     {
         await UnityServices.InitializeAsync();
@@ -87,9 +89,10 @@ public class LeaderboardController : MonoBehaviour
         _leaderboardChannelSO.RaiseScoreSuccessfullyUploadedEvent();
     }
 
-    private void ChangePlayerName(String name)
+    private async void ChangePlayerName(String name)
     {
-        AuthenticationService.Instance.UpdatePlayerNameAsync(name);
+        String filteredName = await _filter.FilterWord(name);
+        AuthenticationService.Instance.UpdatePlayerNameAsync(filteredName.ToString());
     }
 
     private async Task<List<LeaderboardEntry>> GetLeaderboardEntries()
