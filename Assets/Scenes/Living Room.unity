@@ -1328,6 +1328,10 @@ PrefabInstance:
       propertyPath: _minJumpForce
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1079244236679562853, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
+      propertyPath: _decelerationIntensity
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1079244236679562873, guid: 0f3d3477b5a67c04680e7a5ff94d2ed2, type: 3}
       propertyPath: m_RootOrder
       value: 2

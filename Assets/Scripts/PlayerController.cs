@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _boxCastDistance = 3f;
     [Tooltip("Layers that we allow the player to jump off of")]
     [SerializeField] private LayerMask _whatIsGround;
+    [Tooltip("Collider that checks whether or not the player is on the ground")]
+    [SerializeField] private Collider2D _groundCollider;
 
     [Header("Monobehavior References")]
     [SerializeField] private Animator _animator = default;
@@ -88,6 +90,8 @@ public class PlayerController : MonoBehaviour
 	{
 		if ((Input.GetButtonDown("Jump") && !_isJumping)) { _isCharging = true; }
 		if (Input.GetButtonUp("Jump")) { resetJumpSlider(); }
+        //Debug.Log("Grounded: " + _isGrounded);
+       // Debug.Log("Jumping: " + _isJumping)
         
 	}
 	private void FixedUpdate()
@@ -131,6 +135,7 @@ public class PlayerController : MonoBehaviour
     
     private void decelerate()
     {
+        if (!_isGrounded) { return; }
         _rb.velocity = new Vector2(_rb.velocity.x * (1f / _decelerationIntensity), _rb.velocity.y);
     }
 
@@ -147,7 +152,11 @@ public class PlayerController : MonoBehaviour
     private void CheckForGroundCollision()
     {
         // must be falling towards ground for _isJumping to be false
-        if(_rb.velocity.y > 0) { return; }
+        if(_rb.velocity.y > 0.01) {
+            _isGrounded = false;
+            _isJumping = true;
+            return;
+        }
 
         // positions box cast at bottom center of player collider
         Vector3 colliderCenter = _playerCollider.bounds.center;
@@ -162,12 +171,14 @@ public class PlayerController : MonoBehaviour
         else { _isJumping = true;}
 
         raycastHit = Physics2D.BoxCast(colliderCenter2D, playerColliderSize2D, 0f, Vector2.down, 1f, _whatIsGround);
+        
 
-        if(raycastHit.collider == null) { _isGrounded = false; } 
+
+		if (raycastHit.collider == null) { _isGrounded = false; } 
         else { _isGrounded = true;}
     }
 
-    public void TakeDamage()
+	public void TakeDamage()
     {
         Debug.Log("Player took damage");
     }
@@ -188,6 +199,8 @@ public class PlayerController : MonoBehaviour
 			//resetJumpSlider();
 			return; 
         }
+
+        
 
         // if jump button is pressed
         if(context.phase == InputActionPhase.Started)
