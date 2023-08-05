@@ -10,6 +10,7 @@ public class LeaderboardChannelSO : ScriptableObject
 {
     public event GetLeaderboardEntriesDelegate GetLeaderboardEntriesEvent;
     public event ChangePlayerNameDelegate ChangePlayerNameEvent;
+
     public event UnityAction ScoreSuccessfullyUploadedEvent = delegate { };
 
     public bool isDefaultName { get; set;} = true;

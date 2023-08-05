@@ -91,13 +91,14 @@ public class LeaderboardController : MonoBehaviour
 
     private async void ChangePlayerName(String name)
     {
-        String filteredName = await _filter.FilterWord(name);
-        AuthenticationService.Instance.UpdatePlayerNameAsync(filteredName.ToString());
+        // String filteredName = await _filter.FilterWord(name);
+        AuthenticationService.Instance.UpdatePlayerNameAsync(name.ToString());
     }
 
     private async Task<List<LeaderboardEntry>> GetLeaderboardEntries()
     {
-        var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(GetLeaderboardId());
+        var getScoreOptions = new GetScoresOptions { Offset = 0, Limit = 12};
+        var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(GetLeaderboardId(), getScoreOptions);
         return scoresResponse.Results;
     }
 

@@ -37,6 +37,7 @@ public class LeaderboardUI : MonoBehaviour
 
     private void OnEnable()
     {
+        UpdateScoresUI();
         _leaderboardChannel.ScoreSuccessfullyUploadedEvent += UpdateScoresUI;
     }
 
@@ -50,7 +51,7 @@ public class LeaderboardUI : MonoBehaviour
         while(_leaderboardChannel.isDefaultName && _scoreSO.getScore() >= _scoreSO.highScores[gameObject.scene.name])
         {
             _nameEntryPanel.SetActive(true);
-            await Task.Delay(1);
+            await Task.Delay(1); // this is bad and is causing the issue where the scores dont appear after entering a name
         }
 
         LeaderboardEntry[] leaderboard = await _leaderboardChannel.GetLeaderboardEntries();
