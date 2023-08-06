@@ -12,6 +12,7 @@ public class LeaderboardChannelSO : ScriptableObject
     public event ChangePlayerNameDelegate ChangePlayerNameEvent;
 
     public event UnityAction ScoreSuccessfullyUploadedEvent = delegate { };
+    public event UnityAction NameSuccessfullyChangedEvent = delegate { };
 
     public bool isDefaultName { get; set;} = true;
 
@@ -30,6 +31,11 @@ public class LeaderboardChannelSO : ScriptableObject
     public void RaiseScoreSuccessfullyUploadedEvent()
     {
         ScoreSuccessfullyUploadedEvent?.Invoke();
+    }
+
+    public void RaiseNameSuccessfullyChangedEvent()
+    {
+        NameSuccessfullyChangedEvent?.Invoke();
     }
 }
 

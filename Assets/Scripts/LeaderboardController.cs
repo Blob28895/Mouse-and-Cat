@@ -2,21 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
-using Newtonsoft.Json;
 using Unity.Services.Leaderboards.Models;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Leaderboards;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-
-// TODO:
-// - Currently new high scores aren't being reported
-// - Need to get score and only add if higher
-// - Prompt for player username when new entry is achieved
-// - Currently add score just adds a new score, need to update existing score if higher
-// - Exception is thrown when SignInAnonymously is called when already signed in
-
 
 // BRO THERE IS LIKE NO DOCS FOR Unity.Services.Leaderboards
 // https://cloud-code-sdk-documentation.cloud.unity3d.com/leaderboards/v1.1/leaderboardsapi#Import (Why is there javscript docs but not C#?) 
@@ -92,7 +83,8 @@ public class LeaderboardController : MonoBehaviour
     private async void ChangePlayerName(String name)
     {
         // String filteredName = await _filter.FilterWord(name);
-        AuthenticationService.Instance.UpdatePlayerNameAsync(name.ToString());
+        await AuthenticationService.Instance.UpdatePlayerNameAsync(name.ToString());
+        _leaderboardChannelSO.RaiseNameSuccessfullyChangedEvent();
     }
 
     private async Task<List<LeaderboardEntry>> GetLeaderboardEntries()
