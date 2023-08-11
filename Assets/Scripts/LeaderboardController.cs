@@ -82,8 +82,8 @@ public class LeaderboardController : MonoBehaviour
 
     private async void ChangePlayerName(String name)
     {
-        // String filteredName = await _filter.FilterWord(name);
-        await AuthenticationService.Instance.UpdatePlayerNameAsync(name.ToString());
+        String filteredName = await _filter.FilterWord(name);
+        await AuthenticationService.Instance.UpdatePlayerNameAsync(filteredName);
         _leaderboardChannelSO.RaiseNameSuccessfullyChangedEvent();
     }
 
