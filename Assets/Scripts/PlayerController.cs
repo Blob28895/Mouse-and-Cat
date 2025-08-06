@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -86,14 +87,7 @@ public class PlayerController : MonoBehaviour
         _inputReader.RunEvent -= OnRun;
         _inputReader.JumpEvent -= OnJump;
     }
-	private void Update()
-	{
-		if ((Input.GetButtonDown("Jump") && !_isJumping)) { _isCharging = true; }
-		if (Input.GetButtonUp("Jump")) { resetJumpSlider(); }
-        //Debug.Log("Grounded: " + _isGrounded);
-       // Debug.Log("Jumping: " + _isJumping)
-        
-	}
+
 	private void FixedUpdate()
     {
         SetAnimatorParameters();
@@ -102,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
         CheckForGroundCollision();
         //Debug.Log(_isGrounded);
-        if((Input.GetButton("Jump") && _isCharging)) { setJumpSlider();   }
+        
 
         //slows the player down if they arent holding a movement key
         if (_inputVector == Vector2.zero) { decelerate(); }
@@ -205,6 +199,8 @@ public class PlayerController : MonoBehaviour
         // if jump button is pressed
         if(context.phase == InputActionPhase.Started)
         {
+            _isCharging = true;
+            StartCoroutine(ChargeSlider());
             _rejectJumpStartedMidair = false;
             _timeWhenJumpStart = Time.fixedTime;
         }
@@ -221,13 +217,23 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Accrued Jump Force: " + accruedJumpForce);
             _meow.Play();
             _isJumping = true;
-            _rb.AddForce(Vector2.up * _jumpForce * Math.Max(accruedJumpForce, _minJumpForce), ForceMode2D.Impulse) ;
+            _rb.AddForce(Vector2.up * _jumpForce * Math.Max(accruedJumpForce, _minJumpForce), ForceMode2D.Impulse);
+            resetJumpSlider();
+        }
+    }
+
+    private IEnumerator ChargeSlider()
+    {
+        while(_isCharging)
+        {
+            setJumpSlider();
+            yield return null;
         }
     }
 
     private void setJumpSlider()
     {
-		_slider.value += (_maxJumpForce / _jumpForceAccrualRate) / 10f ;
+		_slider.value = (Time.fixedTime - _timeWhenJumpStart) * _jumpForceAccrualRate;
     }
 
     private void resetJumpSlider()

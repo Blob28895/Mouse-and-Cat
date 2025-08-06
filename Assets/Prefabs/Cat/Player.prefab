@@ -267,6 +267,7 @@ MonoBehaviour:
   _whatIsGround:
     serializedVersion: 2
     m_Bits: 192
+  _groundCollider: {fileID: 0}
   _animator: {fileID: 1695080103}
   _spriteRenderer: {fileID: 1695080104}
   _meow: {fileID: 1870046062}

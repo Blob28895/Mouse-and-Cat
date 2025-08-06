@@ -745,6 +745,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jump Bar
       objectReference: {fileID: 0}
+    - target: {fileID: 286970685615128859, guid: 810b2ca34d9fd7c4d889c150c6835ef5, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 286970685615128859, guid: 810b2ca34d9fd7c4d889c150c6835ef5, type: 3}
+      propertyPath: m_MaxValue
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 286970685677226156, guid: 810b2ca34d9fd7c4d889c150c6835ef5, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
